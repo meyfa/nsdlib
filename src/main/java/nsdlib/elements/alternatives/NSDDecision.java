@@ -16,8 +16,6 @@ public class NSDDecision extends NSDElement
 
     /**
      * @param label The element's label.
-     * 
-     * @throws IllegalArgumentException If label is null (use the empty string).
      */
     public NSDDecision(String label)
     {
@@ -27,8 +25,6 @@ public class NSDDecision extends NSDElement
     /**
      * @param label The element's label.
      * @param then The child elements for the "then" branch.
-     * 
-     * @throws IllegalArgumentException If label is null (use the empty string).
      */
     public NSDDecision(String label, Collection<? extends NSDElement> then)
     {
@@ -39,8 +35,6 @@ public class NSDDecision extends NSDElement
      * @param label The element's label.
      * @param then The child elements for the "then" branch.
      * @param otherwise The child elements for the "else" branch.
-     * 
-     * @throws IllegalArgumentException If label is null (use the empty string).
      */
     public NSDDecision(String label, Collection<? extends NSDElement> then,
             Collection<? extends NSDElement> otherwise)

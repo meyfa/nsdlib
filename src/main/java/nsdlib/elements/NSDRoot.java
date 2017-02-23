@@ -10,8 +10,6 @@ public class NSDRoot extends NSDContainer<NSDElement>
 {
     /**
      * @param label The element's label.
-     * 
-     * @throws IllegalArgumentException If label is null (use the empty string).
      */
     public NSDRoot(String label)
     {
@@ -21,8 +19,6 @@ public class NSDRoot extends NSDContainer<NSDElement>
     /**
      * @param label The element's label.
      * @param children The element's initial child elements.
-     * 
-     * @throws IllegalArgumentException If label is null (use the empty string).
      */
     public NSDRoot(String label, Collection<? extends NSDElement> children)
     {

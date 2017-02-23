@@ -7,8 +7,6 @@ public class NSDInstruction extends NSDElement
 {
     /**
      * @param label The element's label.
-     * 
-     * @throws IllegalArgumentException If label is null (use the empty string).
      */
     public NSDInstruction(String label)
     {

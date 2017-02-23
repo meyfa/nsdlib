@@ -17,7 +17,7 @@ public class NSDParallel extends NSDContainer<NSDContainer<NSDElement>>
      */
     public NSDParallel()
     {
-        super("");
+        super(null);
     }
 
     /**
@@ -25,6 +25,6 @@ public class NSDParallel extends NSDContainer<NSDContainer<NSDElement>>
      */
     public NSDParallel(Collection<? extends NSDContainer<NSDElement>> children)
     {
-        super("", children);
+        super(null, children);
     }
 }

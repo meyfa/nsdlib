@@ -14,8 +14,6 @@ public class NSDCase extends NSDContainer<NSDContainer<NSDElement>>
 {
     /**
      * @param label The element's label.
-     * 
-     * @throws IllegalArgumentException If label is null (use the empty string).
      */
     public NSDCase(String label)
     {
@@ -25,8 +23,6 @@ public class NSDCase extends NSDContainer<NSDContainer<NSDElement>>
     /**
      * @param label The element's label.
      * @param children The element's initial child elements.
-     * 
-     * @throws IllegalArgumentException If label is null (use the empty string).
      */
     public NSDCase(String label,
             Collection<? extends NSDContainer<NSDElement>> children)

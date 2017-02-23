@@ -15,8 +15,6 @@ public class NSDTestLastLoop extends NSDContainer<NSDElement>
 {
     /**
      * @param label The element's label.
-     * 
-     * @throws IllegalArgumentException If label is null (use the empty string).
      */
     public NSDTestLastLoop(String label)
     {
@@ -26,8 +24,6 @@ public class NSDTestLastLoop extends NSDContainer<NSDElement>
     /**
      * @param label The element's label.
      * @param children The element's initial child elements.
-     * 
-     * @throws IllegalArgumentException If label is null (use the empty string).
      */
     public NSDTestLastLoop(String label,
             Collection<? extends NSDElement> children)

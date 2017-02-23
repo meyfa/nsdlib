@@ -16,7 +16,7 @@ public class NSDForever extends NSDContainer<NSDElement>
      */
     public NSDForever()
     {
-        super("");
+        super(null);
     }
 
     /**
@@ -24,6 +24,6 @@ public class NSDForever extends NSDContainer<NSDElement>
      */
     public NSDForever(Collection<? extends NSDElement> children)
     {
-        super("", children);
+        super(null, children);
     }
 }

@@ -1,4 +1,4 @@
-package nsdlib.elements.elements.loops;
+package nsdlib.elements.loops;
 
 import java.util.Collection;
 
@@ -7,17 +7,18 @@ import nsdlib.elements.NSDElement;
 
 
 /**
- * Represents a loop element that first checks its condition before the inner
- * elements are run (i.e. a {@code while} loop).
+ * Represents a loop element that first runs its inner elements and then checks
+ * the condition, so that the code is always run at least once (i.e. a
+ * {@code do while} loop).
  */
-public class NSDTestFirstLoop extends NSDContainer<NSDElement>
+public class NSDTestLastLoop extends NSDContainer<NSDElement>
 {
     /**
      * @param label The element's label.
      * 
      * @throws IllegalArgumentException If label is null (use the empty string).
      */
-    public NSDTestFirstLoop(String label)
+    public NSDTestLastLoop(String label)
     {
         super(label);
     }
@@ -28,7 +29,7 @@ public class NSDTestFirstLoop extends NSDContainer<NSDElement>
      * 
      * @throws IllegalArgumentException If label is null (use the empty string).
      */
-    public NSDTestFirstLoop(String label,
+    public NSDTestLastLoop(String label,
             Collection<? extends NSDElement> children)
     {
         super(label, children);

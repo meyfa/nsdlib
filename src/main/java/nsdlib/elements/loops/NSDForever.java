@@ -1,4 +1,4 @@
-package nsdlib.elements.elements.loops;
+package nsdlib.elements.loops;
 
 import java.util.Collection;
 

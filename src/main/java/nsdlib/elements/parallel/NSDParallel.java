@@ -1,4 +1,4 @@
-package nsdlib.elements.elements.parallel;
+package nsdlib.elements.parallel;
 
 import java.util.Collection;
 

@@ -1,4 +1,4 @@
-package nsdlib.elements.elements.alternatives;
+package nsdlib.elements.alternatives;
 
 import java.util.Collection;
 

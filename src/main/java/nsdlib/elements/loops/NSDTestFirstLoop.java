@@ -1,9 +1,13 @@
 package nsdlib.elements.loops;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import nsdlib.elements.NSDContainer;
 import nsdlib.elements.NSDElement;
+import nsdlib.rendering.parts.BraceRenderPart;
+import nsdlib.rendering.parts.RenderPart;
 
 
 /**
@@ -28,5 +32,14 @@ public class NSDTestFirstLoop extends NSDContainer<NSDElement>
             Collection<? extends NSDElement> children)
     {
         super(label, children);
+    }
+
+    @Override
+    public RenderPart toRenderPart()
+    {
+        List<RenderPart> children = stream().map(e -> e.toRenderPart())
+                .collect(Collectors.toList());
+
+        return new BraceRenderPart(children, true, getLabel(), false, null);
     }
 }

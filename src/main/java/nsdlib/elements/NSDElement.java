@@ -1,5 +1,8 @@
 package nsdlib.elements;
 
+import nsdlib.rendering.parts.RenderPart;
+
+
 /**
  * Base class for all NS diagram elements.
  */
@@ -32,4 +35,12 @@ public abstract class NSDElement
     {
         this.label = label;
     }
+
+    /**
+     * Converts this element into an instance of {@link RenderPart}, i.e. into
+     * something that can be laid out and rendered.
+     * 
+     * @return A new render part for this element.
+     */
+    public abstract RenderPart toRenderPart();
 }

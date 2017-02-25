@@ -4,7 +4,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import nsdlib.rendering.parts.ContainerRenderPart;
+import nsdlib.rendering.parts.RenderPart;
+import nsdlib.rendering.parts.ContainerRenderPart.Orientation;
 
 
 /**
@@ -137,5 +142,14 @@ public class NSDContainer<T extends NSDElement> extends NSDElement
     public Stream<T> stream()
     {
         return children.stream();
+    }
+
+    @Override
+    public RenderPart toRenderPart()
+    {
+        List<RenderPart> children = stream().map(e -> e.toRenderPart())
+                .collect(Collectors.toList());
+
+        return new ContainerRenderPart(Orientation.VERTICAL, children);
     }
 }

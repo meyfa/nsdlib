@@ -1,6 +1,11 @@
 package nsdlib.elements;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import nsdlib.rendering.parts.RenderPart;
+import nsdlib.rendering.parts.RootRenderPart;
 
 
 /**
@@ -23,5 +28,14 @@ public class NSDRoot extends NSDContainer<NSDElement>
     public NSDRoot(String label, Collection<? extends NSDElement> children)
     {
         super(label, children);
+    }
+
+    @Override
+    public RenderPart toRenderPart()
+    {
+        List<RenderPart> children = stream().map(e -> e.toRenderPart())
+                .collect(Collectors.toList());
+
+        return new RootRenderPart(getLabel(), children);
     }
 }

@@ -1,9 +1,13 @@
 package nsdlib.elements.alternatives;
 
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 import nsdlib.elements.NSDContainer;
 import nsdlib.elements.NSDElement;
+import nsdlib.rendering.parts.AlternativesRenderPart;
+import nsdlib.rendering.parts.RenderPart;
 
 
 /**
@@ -59,5 +63,17 @@ public class NSDDecision extends NSDElement
     public NSDContainer<NSDElement> getElse()
     {
         return otherwise;
+    }
+
+    @Override
+    public RenderPart toRenderPart()
+    {
+        List<String> pathLabels = Arrays.asList(then.getLabel(),
+                otherwise.getLabel());
+        List<RenderPart> pathContents = Arrays.asList(then.toRenderPart(),
+                otherwise.toRenderPart());
+
+        return new AlternativesRenderPart(getLabel(), pathLabels,
+                pathContents);
     }
 }

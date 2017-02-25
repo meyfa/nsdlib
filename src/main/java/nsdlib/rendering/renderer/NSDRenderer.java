@@ -10,6 +10,10 @@ import nsdlib.rendering.parts.RenderPart;
  * implementing the methods for drawing to their respective medium or output.
  * 
  * <p>
+ * An implementation for rendering to AWT's {@code BufferedImage} class is
+ * available in {@code nsdlib.rendering.renderer.awt.AwtRenderer}.
+ * 
+ * <p>
  * Note that the actual drawing functions are not inside this class. Instead,
  * this class exists to instantiate proper {@link RenderContext} and
  * {@link RenderAdapter} instances that can then do the drawing.
@@ -18,6 +22,18 @@ import nsdlib.rendering.parts.RenderPart;
  */
 public abstract class NSDRenderer<T>
 {
+    /**
+     * Renders the given NS diagram element using this renderer and returns the
+     * result. The diagram is rendered in its intrinsic size.
+     * 
+     * @param nsd The element to render.
+     * @return The render result.
+     */
+    public T render(NSDElement nsd)
+    {
+        return render(nsd.toRenderPart());
+    }
+
     /**
      * Renders the given {@link RenderPart} using this renderer and returns the
      * result. The part is rendered in its intrinsic size.

@@ -4,6 +4,10 @@ package nsdlib.rendering.renderer;
  * This class provides methods for library-agnostic rendering of lines,
  * rectangles and strings.
  * 
+ * <p>
+ * An implementation example can be found for AWT's {@code BufferedImage} in
+ * {@code nsdlib.rendering.renderer.awt.AwtRenderAdapter}.
+ * 
  * @param <T> The type of result this adapter is operating on.
  */
 public abstract class RenderAdapter<T>

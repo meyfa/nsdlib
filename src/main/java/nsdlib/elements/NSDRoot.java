@@ -36,6 +36,6 @@ public class NSDRoot extends NSDContainer<NSDElement>
         List<RenderPart> children = stream().map(e -> e.toRenderPart())
                 .collect(Collectors.toList());
 
-        return new RootRenderPart(getLabel(), children);
+        return new RootRenderPart(this, getLabel(), children);
     }
 }

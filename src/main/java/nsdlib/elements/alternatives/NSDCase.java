@@ -45,7 +45,7 @@ public class NSDCase extends NSDContainer<NSDContainer<NSDElement>>
             pathContents.add(e.toRenderPart());
         }
 
-        return new AlternativesRenderPart(getLabel(), pathLabels,
+        return new AlternativesRenderPart(this, getLabel(), pathLabels,
                 pathContents);
     }
 }

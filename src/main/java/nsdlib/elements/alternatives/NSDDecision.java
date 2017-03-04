@@ -73,7 +73,7 @@ public class NSDDecision extends NSDElement
         List<RenderPart> pathContents = Arrays.asList(then.toRenderPart(),
                 otherwise.toRenderPart());
 
-        return new AlternativesRenderPart(getLabel(), pathLabels,
+        return new AlternativesRenderPart(this, getLabel(), pathLabels,
                 pathContents);
     }
 }

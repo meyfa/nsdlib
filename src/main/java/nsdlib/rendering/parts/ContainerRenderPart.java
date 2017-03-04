@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import nsdlib.elements.NSDElement;
 import nsdlib.rendering.Size;
 import nsdlib.rendering.renderer.RenderAdapter;
 import nsdlib.rendering.renderer.RenderContext;
@@ -31,6 +32,16 @@ public class ContainerRenderPart extends RenderPart
     {
         this.orientation = orientation;
         this.children = Collections.unmodifiableList(new ArrayList<>(children));
+    }
+
+    @Override
+    public RenderPart findForSource(NSDElement source)
+    {
+        if (source == getSource()) {
+            return this;
+        }
+        return children.stream().map(c -> c.findForSource(source))
+                .filter(p -> p != null).findAny().orElse(null);
     }
 
     @Override

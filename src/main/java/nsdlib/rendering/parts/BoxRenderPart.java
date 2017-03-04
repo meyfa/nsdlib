@@ -1,5 +1,6 @@
 package nsdlib.rendering.parts;
 
+import nsdlib.elements.NSDElement;
 import nsdlib.rendering.Size;
 import nsdlib.rendering.renderer.RenderAdapter;
 import nsdlib.rendering.renderer.RenderContext;
@@ -16,10 +17,13 @@ public class BoxRenderPart extends RenderPart
     /**
      * Constructs a new box part with the given label.
      * 
+     * @param source This part's source element.
      * @param s The box label.
      */
-    public BoxRenderPart(String s)
+    public BoxRenderPart(NSDElement source, String s)
     {
+        super(source);
+
         this.label = s;
     }
 

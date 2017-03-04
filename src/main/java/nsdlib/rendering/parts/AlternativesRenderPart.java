@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import nsdlib.elements.NSDElement;
 import nsdlib.rendering.Size;
 import nsdlib.rendering.parts.ContainerRenderPart.Orientation;
 import nsdlib.rendering.renderer.RenderAdapter;
@@ -25,19 +26,28 @@ public class AlternativesRenderPart extends RenderPart
     /**
      * Constructs a new alternatives part.
      * 
+     * @param source This part's source element.
      * @param label The alternative's condition label.
      * @param pathLabels The labels of all possible cases.
      * @param pathContents The child parts.
      */
-    public AlternativesRenderPart(String label, Collection<String> pathLabels,
-            Collection<RenderPart> pathContents)
+    public AlternativesRenderPart(NSDElement source, String label,
+            Collection<String> pathLabels, Collection<RenderPart> pathContents)
     {
+        super(source);
+
         this.label = label;
         this.pathLabels = Collections
                 .unmodifiableList(new ArrayList<>(pathLabels));
 
         this.content = new ContainerRenderPart(Orientation.HORIZONTAL,
                 pathContents);
+    }
+
+    @Override
+    public RenderPart findForSource(NSDElement source)
+    {
+        return source == getSource() ? this : content.findForSource(source);
     }
 
     @Override

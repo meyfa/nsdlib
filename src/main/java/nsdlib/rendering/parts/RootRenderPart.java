@@ -2,6 +2,7 @@ package nsdlib.rendering.parts;
 
 import java.util.Collection;
 
+import nsdlib.elements.NSDElement;
 import nsdlib.rendering.Size;
 import nsdlib.rendering.parts.ContainerRenderPart.Orientation;
 import nsdlib.rendering.renderer.RenderAdapter;
@@ -22,14 +23,23 @@ public class RootRenderPart extends RenderPart
     /**
      * Constructs a new root render part with the given label and children.
      * 
+     * @param source This part's source element.
      * @param label The part's label.
      * @param children This container's child parts.
      */
-    public RootRenderPart(String label,
+    public RootRenderPart(NSDElement source, String label,
             Collection<? extends RenderPart> children)
     {
+        super(source);
+
         this.label = label;
         this.content = new ContainerRenderPart(Orientation.VERTICAL, children);
+    }
+
+    @Override
+    public RenderPart findForSource(NSDElement source)
+    {
+        return source == getSource() ? this : content.findForSource(source);
     }
 
     @Override

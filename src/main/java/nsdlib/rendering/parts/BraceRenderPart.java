@@ -2,6 +2,7 @@ package nsdlib.rendering.parts;
 
 import java.util.Collection;
 
+import nsdlib.elements.NSDElement;
 import nsdlib.rendering.Size;
 import nsdlib.rendering.parts.ContainerRenderPart.Orientation;
 import nsdlib.rendering.renderer.RenderAdapter;
@@ -23,21 +24,31 @@ public class BraceRenderPart extends RenderPart
      * Constructs a new braced container part with the given options and
      * children.
      * 
+     * @param source This part's source element.
      * @param children This container's child parts.
      * @param hasTop Whether a top part shall be rendered for the brace.
      * @param top The brace's top part label.
      * @param hasBottom Whether a bottom part shall be rendered for the brace.
      * @param bottom The brace's bottom part label.
      */
-    public BraceRenderPart(Collection<? extends RenderPart> children,
-            boolean hasTop, String top, boolean hasBottom, String bottom)
+    public BraceRenderPart(NSDElement source,
+            Collection<? extends RenderPart> children, boolean hasTop,
+            String top, boolean hasBottom, String bottom)
     {
+        super(source);
+
         this.content = new ContainerRenderPart(Orientation.VERTICAL, children);
 
         this.hasTop = hasTop;
         this.top = top;
         this.hasBottom = hasBottom;
         this.bottom = bottom;
+    }
+
+    @Override
+    public RenderPart findForSource(NSDElement source)
+    {
+        return source == getSource() ? this : content.findForSource(source);
     }
 
     @Override

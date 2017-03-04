@@ -2,6 +2,7 @@ package nsdlib.rendering.parts;
 
 import java.util.Collection;
 
+import nsdlib.elements.NSDElement;
 import nsdlib.rendering.Size;
 import nsdlib.rendering.parts.ContainerRenderPart.Orientation;
 import nsdlib.rendering.renderer.RenderAdapter;
@@ -20,11 +21,20 @@ public class ParallelRenderPart extends RenderPart
     /**
      * Constructs a new parallel processing part with the given children.
      * 
+     * @param source This part's source element.
      * @param content This container's child parts.
      */
-    public ParallelRenderPart(Collection<RenderPart> content)
+    public ParallelRenderPart(NSDElement source, Collection<RenderPart> content)
     {
+        super(source);
+
         this.content = new ContainerRenderPart(Orientation.HORIZONTAL, content);
+    }
+
+    @Override
+    public RenderPart findForSource(NSDElement source)
+    {
+        return source == getSource() ? this : content.findForSource(source);
     }
 
     @Override

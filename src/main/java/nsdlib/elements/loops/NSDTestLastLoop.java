@@ -41,6 +41,7 @@ public class NSDTestLastLoop extends NSDContainer<NSDElement>
         List<RenderPart> children = stream().map(e -> e.toRenderPart())
                 .collect(Collectors.toList());
 
-        return new BraceRenderPart(children, false, null, true, getLabel());
+        return new BraceRenderPart(this, children, false, null, true,
+                getLabel());
     }
 }

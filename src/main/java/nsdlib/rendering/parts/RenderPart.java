@@ -1,5 +1,6 @@
 package nsdlib.rendering.parts;
 
+import nsdlib.elements.NSDElement;
 import nsdlib.rendering.Size;
 import nsdlib.rendering.renderer.RenderAdapter;
 import nsdlib.rendering.renderer.RenderContext;
@@ -12,6 +13,50 @@ import nsdlib.rendering.renderer.RenderContext;
  */
 public abstract class RenderPart
 {
+    private final NSDElement source;
+
+    /**
+     * Constructs a new part without a source element.
+     */
+    public RenderPart()
+    {
+        this(null);
+    }
+
+    /**
+     * Constructs a new part with the given element as its source.
+     * 
+     * @param source This part's source element.
+     */
+    public RenderPart(NSDElement source)
+    {
+        this.source = source;
+    }
+
+    /**
+     * @return This part's source element.
+     */
+    public NSDElement getSource()
+    {
+        return source;
+    }
+
+    /**
+     * Finds the render part belonging to the given source element. Returns
+     * {@code null} if no such part is found.
+     * 
+     * @param source The element for which to find the render part.
+     * @return The render part.
+     */
+    public RenderPart findForSource(NSDElement source)
+    {
+        if (source == this.source) {
+            return this;
+        }
+
+        return null;
+    }
+
     /**
      * Recursively lays out this part and its children, using the given
      * {@link RenderContext} for measuring.

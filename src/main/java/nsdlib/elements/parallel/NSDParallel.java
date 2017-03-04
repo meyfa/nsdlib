@@ -38,6 +38,6 @@ public class NSDParallel extends NSDContainer<NSDContainer<NSDElement>>
         List<RenderPart> children = stream().map(e -> e.toRenderPart())
                 .collect(Collectors.toList());
 
-        return new ParallelRenderPart(children);
+        return new ParallelRenderPart(this, children);
     }
 }

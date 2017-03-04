@@ -40,6 +40,7 @@ public class NSDTestFirstLoop extends NSDContainer<NSDElement>
         List<RenderPart> children = stream().map(e -> e.toRenderPart())
                 .collect(Collectors.toList());
 
-        return new BraceRenderPart(children, true, getLabel(), false, null);
+        return new BraceRenderPart(this, children, true, getLabel(), false,
+                null);
     }
 }

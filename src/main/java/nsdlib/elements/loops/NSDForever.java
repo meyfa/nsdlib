@@ -37,6 +37,6 @@ public class NSDForever extends NSDContainer<NSDElement>
         List<RenderPart> children = stream().map(e -> e.toRenderPart())
                 .collect(Collectors.toList());
 
-        return new BraceRenderPart(children, true, null, true, null);
+        return new BraceRenderPart(this, children, true, null, true, null);
     }
 }

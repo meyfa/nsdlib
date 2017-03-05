@@ -62,6 +62,8 @@ public class ParallelRenderPart extends RenderPart
     {
         int boxHeight = adapter.getContext().getVerticalPadding() * 2;
 
+        adapter.fillRect(x, y, w, boxHeight, getBackground());
+
         // draw top
         adapter.drawRect(x, y, w, boxHeight);
         adapter.drawLine(x, y + boxHeight, x + boxHeight, y);
@@ -71,6 +73,8 @@ public class ParallelRenderPart extends RenderPart
         // draw content
         content.render(adapter, x, y, w);
         y += content.getSize().height;
+
+        adapter.fillRect(x, y, w, boxHeight, getBackground());
 
         // draw bottom
         adapter.drawRect(x, y, w, boxHeight);

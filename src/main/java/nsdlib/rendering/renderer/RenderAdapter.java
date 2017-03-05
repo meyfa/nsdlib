@@ -1,5 +1,8 @@
 package nsdlib.rendering.renderer;
 
+import nsdlib.rendering.RenderColor;
+
+
 /**
  * This class provides methods for library-agnostic rendering of lines,
  * rectangles and strings.
@@ -60,6 +63,18 @@ public abstract class RenderAdapter<T>
      * @param h The vertical distance to the bottom-right corner.
      */
     public abstract void drawRect(int x, int y, int w, int h);
+
+    /**
+     * Fills a rectangle with the given color. The coordinates are calculated
+     * exactly the same as for {@link #drawRect(int, int, int, int)}.
+     * 
+     * @param x The x coordinate of the top-left corner.
+     * @param y The y coordinate of the top-left corner.
+     * @param w The horizontal distance to the bottom-right corner.
+     * @param h The vertical distance to the bottom-right corner.
+     * @param col The color to fill the rectangle with.
+     */
+    public abstract void fillRect(int x, int y, int w, int h, RenderColor col);
 
     /**
      * Draws a left-aligned string. The given coordinates specify the top-left

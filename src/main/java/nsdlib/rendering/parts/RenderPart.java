@@ -1,6 +1,7 @@
 package nsdlib.rendering.parts;
 
 import nsdlib.elements.NSDElement;
+import nsdlib.rendering.RenderColor;
 import nsdlib.rendering.Size;
 import nsdlib.rendering.renderer.RenderAdapter;
 import nsdlib.rendering.renderer.RenderContext;
@@ -14,6 +15,7 @@ import nsdlib.rendering.renderer.RenderContext;
 public abstract class RenderPart
 {
     private final NSDElement source;
+    private RenderColor background;
 
     /**
      * Constructs a new part without a source element.
@@ -55,6 +57,24 @@ public abstract class RenderPart
         }
 
         return null;
+    }
+
+    /**
+     * @return This part's background color ({@code null} by default).
+     */
+    public RenderColor getBackground()
+    {
+        return background;
+    }
+
+    /**
+     * Sets this part's background color.
+     * 
+     * @param color The new background color. May be null.
+     */
+    public void setBackground(RenderColor color)
+    {
+        this.background = color;
     }
 
     /**

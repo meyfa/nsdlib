@@ -42,6 +42,8 @@ public class BoxRenderPart extends RenderPart
     @Override
     public void render(RenderAdapter<?> adapter, int x, int y, int w)
     {
+        adapter.fillRect(x, y, w, size.height, getBackground());
+
         adapter.drawRect(x, y, w, size.height);
         adapter.drawStringLeft(label, x, y);
     }

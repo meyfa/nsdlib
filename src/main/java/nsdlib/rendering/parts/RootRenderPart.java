@@ -72,6 +72,8 @@ public class RootRenderPart extends RenderPart
     @Override
     public void render(RenderAdapter<?> adapter, int x, int y, int w)
     {
+        adapter.fillRect(x, y, w, boxHeight, getBackground());
+
         adapter.drawRect(x, y, w, size.height);
         adapter.drawStringLeft(label, x, y);
         y += boxHeight;

@@ -109,6 +109,8 @@ public class BraceRenderPart extends RenderPart
     {
         int h = a.getContext().box(top).height;
 
+        a.fillRect(x, y, w, h, getBackground());
+
         // top
         a.drawLine(x, y, x + w, y);
         // left + right
@@ -124,6 +126,8 @@ public class BraceRenderPart extends RenderPart
 
     private void drawLeft(RenderAdapter<?> a, int x, int y, int w)
     {
+        a.fillRect(x, y, w, braceLeftHeight, getBackground());
+
         a.drawLine(x, y, x, y + braceLeftHeight);
         a.drawLine(x + w, y, x + w, y + braceLeftHeight);
 
@@ -138,6 +142,8 @@ public class BraceRenderPart extends RenderPart
     private int drawBottom(RenderAdapter<?> a, int x, int y, int w, int leftW)
     {
         int h = a.getContext().box(bottom).height;
+
+        a.fillRect(x, y, w, h, getBackground());
 
         // top
         a.drawLine(x + leftW, y, x + w, y);

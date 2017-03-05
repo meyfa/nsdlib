@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 
+import nsdlib.rendering.RenderColor;
 import nsdlib.rendering.renderer.RenderAdapter;
 import nsdlib.rendering.renderer.RenderContext;
 
@@ -38,6 +39,12 @@ public class AwtRenderAdapter extends RenderAdapter<BufferedImage>
                 RenderingHints.VALUE_ANTIALIAS_ON);
     }
 
+    private Color toAwtColor(RenderColor col)
+    {
+        return new Color(col.getRed(), col.getGreen(), col.getBlue(),
+                col.getAlpha());
+    }
+
     @Override
     public void drawLine(int x1, int y1, int x2, int y2)
     {
@@ -48,6 +55,21 @@ public class AwtRenderAdapter extends RenderAdapter<BufferedImage>
     public void drawRect(int x, int y, int width, int height)
     {
         g.drawRect(x, y, width, height);
+    }
+
+    @Override
+    public void fillRect(int x, int y, int w, int h, RenderColor col)
+    {
+        if (col == null) {
+            return;
+        }
+
+        Color prevColor = g.getColor();
+
+        g.setColor(toAwtColor(col));
+        g.fillRect(x, y, w, h);
+
+        g.setColor(prevColor);
     }
 
     @Override

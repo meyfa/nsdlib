@@ -73,6 +73,9 @@ public class AlternativesRenderPart extends RenderPart
     @Override
     public void render(RenderAdapter<?> adapter, int x, int y, int w)
     {
+        int headingHeight = adapter.getContext().box(label).height * 2;
+        adapter.fillRect(x, y, w, headingHeight, getBackground());
+
         y += drawHeading(adapter, x, y, w);
         content.render(adapter, x, y, w);
     }

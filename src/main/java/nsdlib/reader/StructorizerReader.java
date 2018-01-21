@@ -14,7 +14,9 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 
 import nsdlib.elements.NSDContainer;
 import nsdlib.elements.NSDElement;
@@ -41,6 +43,7 @@ public class StructorizerReader implements NSDReader
         DocumentBuilder db;
         try {
             db = dbf.newDocumentBuilder();
+            db.setErrorHandler(new QuietErrorHandler());
         } catch (ParserConfigurationException e) {
             throw new NSDReaderException(e);
         }
@@ -269,5 +272,30 @@ public class StructorizerReader implements NSDReader
         }
 
         return parallel;
+    }
+
+    /**
+     * The default DocumentBuilder error handler prints its exceptions, even
+     * when they are caught. This is a replacement handler that does not do that
+     * and instead simply rethrows the errors. Warnings are ignored.
+     */
+    private static class QuietErrorHandler implements ErrorHandler
+    {
+        @Override
+        public void warning(SAXParseException exception) throws SAXException
+        {
+        }
+
+        @Override
+        public void error(SAXParseException exception) throws SAXException
+        {
+            throw exception;
+        }
+
+        @Override
+        public void fatalError(SAXParseException exception) throws SAXException
+        {
+            throw exception;
+        }
     }
 }

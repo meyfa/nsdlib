@@ -1,5 +1,7 @@
 # nsdlib
 
+[![Build Status](https://travis-ci.org/meyfa/nsdlib.svg?branch=master)](https://travis-ci.org/meyfa/nsdlib)
+
 This is a Java library for working with [Nassi-Shneiderman diagrams](https://en.wikipedia.org/wiki/Nassi–Shneiderman_diagram)
 (structograms).
 

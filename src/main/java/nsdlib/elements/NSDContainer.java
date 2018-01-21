@@ -58,7 +58,7 @@ public class NSDContainer<T extends NSDElement> extends NSDElement
      * @param index The index of the child element.
      * @return The child element.
      */
-    public NSDElement getChild(int index)
+    public T getChild(int index)
     {
         return children.get(index);
     }

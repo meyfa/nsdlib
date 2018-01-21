@@ -28,7 +28,7 @@ public abstract class NSDElement
 
     /**
      * Sets the element's label to the given string.
-     * 
+     *
      * @param label The new label.
      */
     public void setLabel(String label)
@@ -39,7 +39,7 @@ public abstract class NSDElement
     /**
      * Converts this element into an instance of {@link RenderPart}, i.e. into
      * something that can be laid out and rendered.
-     * 
+     *
      * @return A new render part for this element.
      */
     public abstract RenderPart toRenderPart();

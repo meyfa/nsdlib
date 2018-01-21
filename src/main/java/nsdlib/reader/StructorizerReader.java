@@ -69,7 +69,7 @@ public class StructorizerReader implements NSDReader
     /**
      * Finds all child elements of {@code e}, parses them and adds the parsed
      * instances to {@code cont}.
-     * 
+     *
      * @param cont The container to add the elements to.
      * @param e The element whose child elements shall be parsed.
      * @throws NSDReaderException If an unsupported tag is encountered.
@@ -90,7 +90,7 @@ public class StructorizerReader implements NSDReader
 
     /**
      * Parses the given element according to its tag.
-     * 
+     *
      * @param e The element to parse.
      * @return The parsed element class instance.
      * @throws NSDReaderException If an unsupported tag is encountered.
@@ -125,14 +125,14 @@ public class StructorizerReader implements NSDReader
      * format, where lines are surrounded with quotation marks and separated by
      * commas. Quotes occurring inline as normal characters are escaped by
      * prefixing them with a second quote.
-     * 
+     *
      * <p>
      * This function reverses that process.
-     * 
+     *
      * <p>
      * Example: {@code "hello world","foo","\"\"bar\"\""} turns into
      * {@code ["hello world", "foo", "\"bar\""]} .
-     * 
+     *
      * @param s The string to deserialize.
      * @return The deserialized lines.
      */

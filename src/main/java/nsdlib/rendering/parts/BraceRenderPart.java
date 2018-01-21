@@ -23,7 +23,7 @@ public class BraceRenderPart extends RenderPart
     /**
      * Constructs a new braced container part with the given options and
      * children.
-     * 
+     *
      * @param source This part's source element.
      * @param children This container's child parts.
      * @param hasTop Whether a top part shall be rendered for the brace.

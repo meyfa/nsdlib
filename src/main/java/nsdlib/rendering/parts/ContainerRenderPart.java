@@ -23,7 +23,7 @@ public class ContainerRenderPart extends RenderPart
 
     /**
      * Constructs a new container part with the given orientation and children.
-     * 
+     *
      * @param orientation Whether this is a horizontal or vertical layout.
      * @param children This container's child parts.
      */

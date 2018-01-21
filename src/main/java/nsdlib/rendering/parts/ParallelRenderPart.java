@@ -20,7 +20,7 @@ public class ParallelRenderPart extends RenderPart
 
     /**
      * Constructs a new parallel processing part with the given children.
-     * 
+     *
      * @param source This part's source element.
      * @param content This container's child parts.
      */

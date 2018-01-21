@@ -13,10 +13,10 @@ public interface NSDReader
 {
     /**
      * Reads a structogram from the given input stream and returns it.
-     * 
+     *
      * @param in The stream to read from.
      * @return The structogram that was read.
-     * 
+     *
      * @throws NSDReaderException If there is an error.
      */
     NSDRoot read(InputStream in) throws NSDReaderException;

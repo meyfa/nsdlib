@@ -8,8 +8,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import nsdlib.rendering.parts.ContainerRenderPart;
-import nsdlib.rendering.parts.RenderPart;
 import nsdlib.rendering.parts.ContainerRenderPart.Orientation;
+import nsdlib.rendering.parts.RenderPart;
 
 
 /**
@@ -54,7 +54,7 @@ public class NSDContainer<T extends NSDElement> extends NSDElement
 
     /**
      * Retrieves a child element from this container.
-     * 
+     *
      * @param index The index of the child element.
      * @return The child element.
      */
@@ -65,7 +65,7 @@ public class NSDContainer<T extends NSDElement> extends NSDElement
 
     /**
      * Replaces the child element at the given index with the given element.
-     * 
+     *
      * @param index The element position.
      * @param e The new element to insert instead of the current one.
      */
@@ -77,7 +77,7 @@ public class NSDContainer<T extends NSDElement> extends NSDElement
 
     /**
      * Inserts a child element at the end of this container.
-     * 
+     *
      * @param e The element to insert.
      */
     public void addChild(T e)
@@ -89,7 +89,7 @@ public class NSDContainer<T extends NSDElement> extends NSDElement
     /**
      * Inserts a child element at a given index, shifting the current element
      * and any subsequent elements 1 to the right (adding 1 to their indices).
-     * 
+     *
      * @param index The index to insert the element at.
      * @param e The element to insert.
      */
@@ -101,7 +101,7 @@ public class NSDContainer<T extends NSDElement> extends NSDElement
 
     /**
      * Removes the child element at the given index from this container.
-     * 
+     *
      * @param index The element's index.
      */
     public void removeChild(int index)
@@ -111,7 +111,7 @@ public class NSDContainer<T extends NSDElement> extends NSDElement
 
     /**
      * Removes the element from this container's list of child elements.
-     * 
+     *
      * @param e The element to remove.
      */
     public void removeChild(T e)

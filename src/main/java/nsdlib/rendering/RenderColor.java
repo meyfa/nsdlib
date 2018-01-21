@@ -17,7 +17,7 @@ public class RenderColor
 
     /**
      * Constructs a fully opaque (alpha = 255) color.
-     * 
+     *
      * @param r The red component.
      * @param g The green component.
      * @param b The blue component.
@@ -29,7 +29,7 @@ public class RenderColor
 
     /**
      * Constructs a color with optional transparency.
-     * 
+     *
      * @param r The red component.
      * @param g The green component.
      * @param b The blue component.

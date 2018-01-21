@@ -25,7 +25,7 @@ public class Size
 
     /**
      * Constructs a new Size object with the given width and height.
-     * 
+     *
      * @param width The width / horizontal component.
      * @param height The height / vertical component.
      */

@@ -12,7 +12,7 @@ import nsdlib.rendering.renderer.RenderContext;
 
 /**
  * Renderer subclass for rendering to AWT's {@link BufferedImage}.
- * 
+ *
  * @see NSDRenderer
  * @see AwtRenderAdapter
  */

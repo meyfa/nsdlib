@@ -16,7 +16,7 @@ public class BoxRenderPart extends RenderPart
 
     /**
      * Constructs a new box part with the given label.
-     * 
+     *
      * @param source This part's source element.
      * @param s The box label.
      */

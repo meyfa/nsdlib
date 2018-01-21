@@ -22,7 +22,7 @@ public class RootRenderPart extends RenderPart
 
     /**
      * Constructs a new root render part with the given label and children.
-     * 
+     *
      * @param source This part's source element.
      * @param label The part's label.
      * @param children This container's child parts.

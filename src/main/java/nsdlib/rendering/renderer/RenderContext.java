@@ -50,7 +50,7 @@ public class RenderContext
     /**
      * Measures the given string's width when drawn, in pixels. If the string is
      * {@code null}, a value of 0 is returned.
-     * 
+     *
      * @param s The string to measure.
      * @return The string's width when drawn.
      */
@@ -65,7 +65,7 @@ public class RenderContext
     /**
      * Measures the given string's height when drawn, in pixels. If the string
      * is {@code null}, a value of 0 is returned.
-     * 
+     *
      * @param s The string to measure.
      * @return The string's height when drawn.
      */
@@ -80,7 +80,7 @@ public class RenderContext
     /**
      * Measures the given string's width and height when drawn, in pixels. If
      * the string is {@code null}, both dimensions are 0.
-     * 
+     *
      * @param s The string to measure.
      * @return A size object describing the string's dimensions.
      */
@@ -93,7 +93,7 @@ public class RenderContext
      * Utility function for calculating the size of a box around the given
      * string. This is done by measuring the string's size and combining it with
      * the defined padding on all four sizes.
-     * 
+     *
      * @param s The string to calculate the box size for.
      * @return The box size for the given string.
      */

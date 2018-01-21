@@ -25,7 +25,7 @@ public class AlternativesRenderPart extends RenderPart
 
     /**
      * Constructs a new alternatives part.
-     * 
+     *
      * @param source This part's source element.
      * @param label The alternative's condition label.
      * @param pathLabels The labels of all possible cases.

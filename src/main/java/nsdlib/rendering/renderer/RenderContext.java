@@ -92,7 +92,7 @@ public class RenderContext
     /**
      * Utility function for calculating the size of a box around the given
      * string. This is done by measuring the string's size and combining it with
-     * the defined padding on all four sizes.
+     * the defined padding on all four sides.
      *
      * @param s The string to calculate the box size for.
      * @return The box size for the given string.

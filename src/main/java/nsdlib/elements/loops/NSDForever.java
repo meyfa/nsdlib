@@ -1,8 +1,6 @@
 package nsdlib.elements.loops;
 
 import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import nsdlib.elements.NSDContainer;
 import nsdlib.elements.NSDElement;
@@ -34,9 +32,7 @@ public class NSDForever extends NSDContainer<NSDElement>
     @Override
     public RenderPart toRenderPart()
     {
-        List<RenderPart> children = stream().map(e -> e.toRenderPart())
-                .collect(Collectors.toList());
-
-        return new BraceRenderPart(this, children, true, null, true, null);
+        return new BraceRenderPart(this, getChildRenderParts(), true, null,
+                true, null);
     }
 }

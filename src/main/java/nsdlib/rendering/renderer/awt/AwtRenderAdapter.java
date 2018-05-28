@@ -73,30 +73,8 @@ public class AwtRenderAdapter extends RenderAdapter<BufferedImage>
     }
 
     @Override
-    public void drawStringLeft(String s, int x, int y)
+    public void drawStringAt(String s, int x, int y)
     {
-        if (s == null) {
-            return;
-        }
-
-        RenderContext ctx = getContext();
-        x += ctx.getHorizontalPadding();
-        y += ctx.getVerticalPadding() + ctx.stringHeight(s);
-
-        g.drawString(s, x, y);
-    }
-
-    @Override
-    public void drawStringCentered(String s, int x, int y)
-    {
-        if (s == null) {
-            return;
-        }
-
-        RenderContext ctx = getContext();
-        x -= ctx.stringWidth(s) / 2;
-        y += ctx.getVerticalPadding() + ctx.stringHeight(s);
-
         g.drawString(s, x, y);
     }
 

@@ -147,9 +147,16 @@ public class NSDContainer<T extends NSDElement> extends NSDElement
     @Override
     public RenderPart toRenderPart()
     {
-        List<RenderPart> children = stream().map(e -> e.toRenderPart())
-                .collect(Collectors.toList());
+        return new ContainerRenderPart(Orientation.VERTICAL,
+                getChildRenderParts());
+    }
 
-        return new ContainerRenderPart(Orientation.VERTICAL, children);
+    /**
+     * @return A list of child elements converted to render parts.
+     */
+    protected List<RenderPart> getChildRenderParts()
+    {
+        return stream().map(NSDElement::toRenderPart)
+                .collect(Collectors.toList());
     }
 }

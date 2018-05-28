@@ -68,12 +68,11 @@ public class NSDDecision extends NSDElement
     @Override
     public RenderPart toRenderPart()
     {
-        List<String> pathLabels = Arrays.asList(then.getLabel(),
+        List<String> labels = Arrays.asList(then.getLabel(),
                 otherwise.getLabel());
-        List<RenderPart> pathContents = Arrays.asList(then.toRenderPart(),
+        List<RenderPart> contents = Arrays.asList(then.toRenderPart(),
                 otherwise.toRenderPart());
 
-        return new AlternativesRenderPart(this, getLabel(), pathLabels,
-                pathContents);
+        return new AlternativesRenderPart(this, getLabel(), labels, contents);
     }
 }

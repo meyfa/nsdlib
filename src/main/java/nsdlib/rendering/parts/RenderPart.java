@@ -52,11 +52,7 @@ public abstract class RenderPart
      */
     public RenderPart findForSource(NSDElement source)
     {
-        if (source == this.source) {
-            return this;
-        }
-
-        return null;
+        return source == getSource() ? this : null;
     }
 
     /**

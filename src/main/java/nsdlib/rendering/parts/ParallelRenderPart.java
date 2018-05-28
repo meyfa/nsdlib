@@ -16,7 +16,9 @@ import nsdlib.rendering.renderer.RenderContext;
 public class ParallelRenderPart extends RenderPart
 {
     private final ContainerRenderPart content;
+
     private Size size;
+    private int decoHeight;
 
     /**
      * Constructs a new parallel processing part with the given children.
@@ -40,15 +42,17 @@ public class ParallelRenderPart extends RenderPart
     @Override
     public void layout(RenderContext ctx)
     {
-        size = ctx.box(null);
-        size.width = Math.max(size.width, ctx.getVerticalPadding() * 6);
-        size.height *= 2;
-
         content.layout(ctx);
-        Size contentSize = content.getSize();
 
-        size.width = Math.max(size.width, contentSize.width);
-        size.height += contentSize.height;
+        decoHeight = ctx.getVerticalPadding() * 2;
+
+        Size contentSize = content.getSize();
+        int minimumWidth = decoHeight * 3;
+
+        int width = Math.max(minimumWidth, contentSize.width);
+        int height = decoHeight * 2 + contentSize.height;
+
+        size = new Size(width, height);
     }
 
     @Override
@@ -60,25 +64,23 @@ public class ParallelRenderPart extends RenderPart
     @Override
     public void render(RenderAdapter<?> adapter, int x, int y, int w)
     {
-        int boxHeight = adapter.getContext().getVerticalPadding() * 2;
-
-        adapter.fillRect(x, y, w, boxHeight, getBackground());
+        adapter.fillRect(x, y, w, decoHeight, getBackground());
 
         // draw top
-        adapter.drawRect(x, y, w, boxHeight);
-        adapter.drawLine(x, y + boxHeight, x + boxHeight, y);
-        adapter.drawLine(x + w - boxHeight, y, x + w, y + boxHeight);
-        y += boxHeight;
+        adapter.drawRect(x, y, w, decoHeight);
+        adapter.drawLine(x, y + decoHeight, x + decoHeight, y);
+        adapter.drawLine(x + w - decoHeight, y, x + w, y + decoHeight);
+        y += decoHeight;
 
         // draw content
         content.render(adapter, x, y, w);
         y += content.getSize().height;
 
-        adapter.fillRect(x, y, w, boxHeight, getBackground());
+        adapter.fillRect(x, y, w, decoHeight, getBackground());
 
         // draw bottom
-        adapter.drawRect(x, y, w, boxHeight);
-        adapter.drawLine(x, y, x + boxHeight, y + boxHeight);
-        adapter.drawLine(x + w - boxHeight, y + boxHeight, x + w, y);
+        adapter.drawRect(x, y, w, decoHeight);
+        adapter.drawLine(x, y, x + decoHeight, y + decoHeight);
+        adapter.drawLine(x + w - decoHeight, y + decoHeight, x + w, y);
     }
 }

@@ -1,8 +1,6 @@
 package nsdlib.elements.parallel;
 
 import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import nsdlib.elements.NSDContainer;
 import nsdlib.elements.NSDElement;
@@ -35,9 +33,6 @@ public class NSDParallel extends NSDContainer<NSDContainer<NSDElement>>
     @Override
     public RenderPart toRenderPart()
     {
-        List<RenderPart> children = stream().map(e -> e.toRenderPart())
-                .collect(Collectors.toList());
-
-        return new ParallelRenderPart(this, children);
+        return new ParallelRenderPart(this, getChildRenderParts());
     }
 }

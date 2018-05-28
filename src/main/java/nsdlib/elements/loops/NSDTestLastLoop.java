@@ -1,8 +1,6 @@
 package nsdlib.elements.loops;
 
 import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import nsdlib.elements.NSDContainer;
 import nsdlib.elements.NSDElement;
@@ -38,10 +36,7 @@ public class NSDTestLastLoop extends NSDContainer<NSDElement>
     @Override
     public RenderPart toRenderPart()
     {
-        List<RenderPart> children = stream().map(e -> e.toRenderPart())
-                .collect(Collectors.toList());
-
-        return new BraceRenderPart(this, children, false, null, true,
-                getLabel());
+        return new BraceRenderPart(this, getChildRenderParts(), false, null,
+                true, getLabel());
     }
 }

@@ -17,8 +17,10 @@ public class BraceRenderPart extends RenderPart
     private final ContainerRenderPart content;
     private final boolean hasTop, hasBottom;
     private final String top, bottom;
+
     private Size size;
-    private int braceLeftHeight;
+    private int leftWidth, contentHeight;
+    private int topHeight, bottomHeight;
 
     /**
      * Constructs a new braced container part with the given options and
@@ -54,30 +56,32 @@ public class BraceRenderPart extends RenderPart
     @Override
     public void layout(RenderContext ctx)
     {
-        size = new Size();
-
-        size.width = ctx.getHorizontalPadding() * 2;
-
         content.layout(ctx);
+
         Size contentSize = content.getSize();
-        size.width += contentSize.width;
-        size.height += contentSize.height;
+        int minimumContentHeight = ctx.getVerticalPadding() * 2;
 
-        size.height = Math.max(size.height, ctx.getVerticalPadding() * 2);
+        leftWidth = ctx.getHorizontalPadding() * 2;
+        contentHeight = Math.max(contentSize.height, minimumContentHeight);
 
-        braceLeftHeight = size.height;
+        int width = leftWidth + contentSize.width;
+        int height = contentHeight;
 
         if (hasTop) {
             Size boxSize = ctx.box(top);
-            size.width = Math.max(size.width, boxSize.width);
-            size.height += boxSize.height;
+            width = Math.max(width, boxSize.width);
+            topHeight = boxSize.height;
+            height += topHeight;
         }
 
         if (hasBottom) {
             Size boxSize = ctx.box(bottom);
-            size.width = Math.max(size.width, boxSize.width);
-            size.height += boxSize.height;
+            width = Math.max(width, boxSize.width);
+            bottomHeight = boxSize.height;
+            height += bottomHeight;
         }
+
+        size = new Size(width, height);
     }
 
     @Override
@@ -89,72 +93,66 @@ public class BraceRenderPart extends RenderPart
     @Override
     public void render(RenderAdapter<?> adapter, int x, int y, int w)
     {
-        int braceLeftWidth = adapter.getContext().getHorizontalPadding() * 2;
-
         if (hasTop) {
-            y += drawTop(adapter, x, y, w, braceLeftWidth);
+            y += drawTop(adapter, x, y, w);
         }
 
-        drawLeft(adapter, x, y, braceLeftWidth);
+        drawLeft(adapter, x, y);
 
-        content.render(adapter, x + braceLeftWidth, y, w - braceLeftWidth);
-        y += braceLeftHeight;
+        content.render(adapter, x + leftWidth, y, w - leftWidth);
+        y += contentHeight;
 
         if (hasBottom) {
-            drawBottom(adapter, x, y, w, braceLeftWidth);
+            drawBottom(adapter, x, y, w);
         }
     }
 
-    private int drawTop(RenderAdapter<?> a, int x, int y, int w, int leftW)
+    private int drawTop(RenderAdapter<?> a, int x, int y, int w)
     {
-        int h = a.getContext().box(top).height;
-
-        a.fillRect(x, y, w, h, getBackground());
+        a.fillRect(x, y, w, topHeight, getBackground());
 
         // top
         a.drawLine(x, y, x + w, y);
         // left + right
-        a.drawLine(x, y, x, y + h);
-        a.drawLine(x + w, y, x + w, y + h);
+        a.drawLine(x, y, x, y + topHeight);
+        a.drawLine(x + w, y, x + w, y + topHeight);
         // bottom
-        a.drawLine(x + leftW, y + h, x + w, y + h);
+        a.drawLine(x + leftWidth, y + topHeight, x + w, y + topHeight);
 
         a.drawStringLeft(top, x, y);
 
-        return h;
+        return topHeight;
     }
 
-    private void drawLeft(RenderAdapter<?> a, int x, int y, int w)
+    private void drawLeft(RenderAdapter<?> a, int x, int y)
     {
-        a.fillRect(x, y, w, braceLeftHeight, getBackground());
+        a.fillRect(x, y, leftWidth, contentHeight, getBackground());
 
-        a.drawLine(x, y, x, y + braceLeftHeight);
-        a.drawLine(x + w, y, x + w, y + braceLeftHeight);
+        a.drawLine(x, y, x, y + contentHeight);
+        a.drawLine(x + leftWidth, y, x + leftWidth, y + contentHeight);
 
         if (!hasTop) {
-            a.drawLine(x, y, x + w, y);
+            a.drawLine(x, y, x + leftWidth, y);
         }
         if (!hasBottom) {
-            a.drawLine(x, y + braceLeftHeight, x + w, y + braceLeftHeight);
+            a.drawLine(x, y + contentHeight, x + leftWidth, y + contentHeight);
         }
     }
 
-    private int drawBottom(RenderAdapter<?> a, int x, int y, int w, int leftW)
+    private int drawBottom(RenderAdapter<?> a, int x, int y, int w)
     {
-        int h = a.getContext().box(bottom).height;
-
-        a.fillRect(x, y, w, h, getBackground());
+        a.fillRect(x, y, w, bottomHeight, getBackground());
 
         // top
-        a.drawLine(x + leftW, y, x + w, y);
+        a.drawLine(x + leftWidth, y, x + w, y);
         // left + right
-        a.drawLine(x, y, x, y + h);
-        a.drawLine(x + w, y, x + w, y + h);
+        a.drawLine(x, y, x, y + bottomHeight);
+        a.drawLine(x + w, y, x + w, y + bottomHeight);
         // bottom
-        a.drawLine(x, y + h, x + w, y + h);
+        a.drawLine(x, y + bottomHeight, x + w, y + bottomHeight);
 
         a.drawStringLeft(bottom, x, y);
 
-        return h;
+        return bottomHeight;
     }
 }

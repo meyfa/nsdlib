@@ -1,8 +1,8 @@
 package nsdlib.elements.alternatives;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import nsdlib.elements.NSDContainer;
 import nsdlib.elements.NSDElement;
@@ -37,15 +37,12 @@ public class NSDCase extends NSDContainer<NSDContainer<NSDElement>>
     @Override
     public RenderPart toRenderPart()
     {
-        List<String> pathLabels = new ArrayList<>();
-        List<RenderPart> pathContents = new ArrayList<>();
+        return new AlternativesRenderPart(this, getLabel(), getChildLabels(),
+                getChildRenderParts());
+    }
 
-        for (NSDContainer<NSDElement> e : this) {
-            pathLabels.add(e.getLabel());
-            pathContents.add(e.toRenderPart());
-        }
-
-        return new AlternativesRenderPart(this, getLabel(), pathLabels,
-                pathContents);
+    private List<String> getChildLabels()
+    {
+        return stream().map(NSDElement::getLabel).collect(Collectors.toList());
     }
 }

@@ -12,6 +12,7 @@ import nsdlib.rendering.renderer.RenderContext;
 public class BoxRenderPart extends RenderPart
 {
     private final String label;
+
     private Size size;
 
     /**

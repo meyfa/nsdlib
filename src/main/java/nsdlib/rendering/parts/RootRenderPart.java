@@ -17,6 +17,7 @@ public class RootRenderPart extends RenderPart
 {
     private final String label;
     private final ContainerRenderPart content;
+
     private Size size;
     private int padHorizontal, boxHeight;
 
@@ -45,22 +46,18 @@ public class RootRenderPart extends RenderPart
     @Override
     public void layout(RenderContext ctx)
     {
-        size = new Size();
-
         content.layout(ctx);
 
+        Size box = ctx.box(label);
         Size contentSize = content.getSize();
-        size.width = contentSize.width;
-        size.height = contentSize.height;
 
         padHorizontal = ctx.getHorizontalPadding();
-        size.width += padHorizontal * 2;
+        boxHeight = box.height;
 
-        Size boxSize = ctx.box(label);
-        size.height += (boxHeight = boxSize.height);
-        size.width = Math.max(size.width, boxSize.width);
+        int width = Math.max(2 * padHorizontal + contentSize.width, box.width);
+        int height = boxHeight + contentSize.height + ctx.getVerticalPadding();
 
-        size.height += ctx.getVerticalPadding();
+        size = new Size(width, height);
     }
 
     @Override

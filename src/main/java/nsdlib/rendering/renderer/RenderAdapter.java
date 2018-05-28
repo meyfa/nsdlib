@@ -26,14 +26,6 @@ public abstract class RenderAdapter<T>
     }
 
     /**
-     * @return The context this adapter is using.
-     */
-    public RenderContext getContext()
-    {
-        return ctx;
-    }
-
-    /**
      * Finishes rendering by releasing all potentially acquired resources and
      * returning the render result.
      *
@@ -85,7 +77,17 @@ public abstract class RenderAdapter<T>
      * @param x The box's x coordinate.
      * @param y The box's y coordinate.
      */
-    public abstract void drawStringLeft(String s, int x, int y);
+    public void drawStringLeft(String s, int x, int y)
+    {
+        if (s == null) {
+            return;
+        }
+
+        x += ctx.getHorizontalPadding();
+        y += ctx.getVerticalPadding() + ctx.stringHeight(s);
+
+        drawStringAt(s, x, y);
+    }
 
     /**
      * Draws a center-aligned string. The given x coordinate specifies the
@@ -97,5 +99,24 @@ public abstract class RenderAdapter<T>
      * @param x The box's horizontal center coordinate.
      * @param y The box's y coordinate.
      */
-    public abstract void drawStringCentered(String s, int x, int y);
+    public void drawStringCentered(String s, int x, int y)
+    {
+        if (s == null) {
+            return;
+        }
+
+        x -= ctx.stringWidth(s) / 2;
+        y += ctx.getVerticalPadding() + ctx.stringHeight(s);
+
+        drawStringAt(s, x, y);
+    }
+
+    /**
+     * Draws the string positioned exactly at the given coordinates.
+     *
+     * @param s The string to draw.
+     * @param x The baseline x coordinate.
+     * @param y The baseline y coordinate.
+     */
+    protected abstract void drawStringAt(String s, int x, int y);
 }

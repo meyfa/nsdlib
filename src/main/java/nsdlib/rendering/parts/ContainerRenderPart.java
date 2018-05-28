@@ -19,6 +19,7 @@ public class ContainerRenderPart extends RenderPart
 {
     private final Orientation orientation;
     private final List<RenderPart> children;
+
     private Size size;
 
     /**
@@ -47,28 +48,29 @@ public class ContainerRenderPart extends RenderPart
     @Override
     public void layout(RenderContext ctx)
     {
-        size = new Size();
+        int childMaxWidth = 0, childMaxHeight = 0;
+        int totalHeight = 0;
 
-        Size childMaxSize = new Size();
         for (RenderPart e : children) {
-
             e.layout(ctx);
             Size eSize = e.getSize();
 
-            childMaxSize.width = Math.max(childMaxSize.width, eSize.width);
-            childMaxSize.height = Math.max(childMaxSize.height, eSize.height);
+            childMaxWidth = Math.max(childMaxWidth, eSize.width);
+            childMaxHeight = Math.max(childMaxHeight, eSize.height);
 
-            // for vertical
-            size.height += eSize.height;
-
+            totalHeight += eSize.height;
         }
 
-        size.width = childMaxSize.width;
-
+        int width, height;
         if (orientation == Orientation.HORIZONTAL) {
-            size.width *= children.size();
-            size.height = childMaxSize.height;
+            width = childMaxWidth * children.size();
+            height = childMaxHeight;
+        } else {
+            width = childMaxWidth;
+            height = totalHeight;
         }
+
+        size = new Size(width, height);
     }
 
     @Override
@@ -85,10 +87,10 @@ public class ContainerRenderPart extends RenderPart
         adapter.drawRect(x, y, w, size.height);
 
         int childWidth = (orientation == Orientation.HORIZONTAL)
-                ? (w / children.size()) : w;
+                ? (w / children.size())
+                : w;
 
         for (RenderPart e : children) {
-
             e.render(adapter, x, y, childWidth);
 
             if (orientation == Orientation.HORIZONTAL) {
@@ -97,7 +99,6 @@ public class ContainerRenderPart extends RenderPart
             } else {
                 y += e.getSize().height;
             }
-
         }
     }
 

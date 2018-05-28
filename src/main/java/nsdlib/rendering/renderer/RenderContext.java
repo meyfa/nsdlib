@@ -56,10 +56,7 @@ public class RenderContext
      */
     public int stringWidth(String s)
     {
-        if (s == null) {
-            return 0;
-        }
-        return stringWidth.applyAsInt(s);
+        return s == null ? 0 : stringWidth.applyAsInt(s);
     }
 
     /**
@@ -71,10 +68,7 @@ public class RenderContext
      */
     public int stringHeight(String s)
     {
-        if (s == null) {
-            return 0;
-        }
-        return stringHeight.applyAsInt(s);
+        return s == null ? 0 : stringHeight.applyAsInt(s);
     }
 
     /**
@@ -99,11 +93,9 @@ public class RenderContext
      */
     public Size box(String s)
     {
-        Size size = measureString(s);
+        int width = stringWidth(s) + padH * 2;
+        int height = stringHeight(s) + padV * 2;
 
-        size.width += padH * 2;
-        size.height += padV * 2;
-
-        return size;
+        return new Size(width, height);
     }
 }

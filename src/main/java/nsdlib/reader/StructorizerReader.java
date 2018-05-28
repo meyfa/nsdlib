@@ -84,10 +84,9 @@ public class StructorizerReader implements NSDReader
 
         for (int i = 0, n = nodes.getLength(); i < n; ++i) {
             Node node = nodes.item(i);
-            if (!(node instanceof Element)) {
-                continue;
+            if (node instanceof Element) {
+                cont.addChild(parse((Element) node));
             }
-            cont.addChild(parse((Element) node));
         }
     }
 
@@ -104,8 +103,7 @@ public class StructorizerReader implements NSDReader
 
         switch (tag) {
             case "instruction":
-                String label = deserialize(e.getAttribute("text")).get(0);
-                return new NSDInstruction(label);
+                return parseInstruction(e);
             case "alternative":
                 return parseDecision(e);
             case "case":
@@ -153,22 +151,20 @@ public class StructorizerReader implements NSDReader
         for (int i = 0; i < s.length(); ++i) {
             char chr = s.charAt(i);
             if (chr == '\"') {
-                if (i + 1 < s.length()) {
+                if (i < s.length() - 1) {
                     if (!open) {
                         open = true;
-                    } else if (s.charAt(i + 1) == chr) {
+                        continue;
+                    }
+                    if (s.charAt(i + 1) == chr) {
                         sb.append(chr);
                         i++;
-                    } else {
-                        strings.add(sb.toString());
-                        sb = new StringBuilder();
-                        open = false;
+                        continue;
                     }
-                } else {
-                    strings.add(sb.toString());
-                    sb = new StringBuilder();
-                    open = false;
                 }
+                strings.add(sb.toString());
+                sb = new StringBuilder();
+                open = false;
             } else if (open) {
                 sb.append(chr);
             }
@@ -180,6 +176,12 @@ public class StructorizerReader implements NSDReader
         }
 
         return strings;
+    }
+
+    private NSDInstruction parseInstruction(Element e) throws NSDReaderException
+    {
+        String label = deserialize(e.getAttribute("text")).get(0);
+        return new NSDInstruction(label);
     }
 
     private NSDDecision parseDecision(Element e) throws NSDReaderException
@@ -203,17 +205,13 @@ public class StructorizerReader implements NSDReader
 
         NodeList qCase = e.getElementsByTagName("qCase");
         for (int i = 0; i < qCase.getLength(); ++i) {
+            String label = lines.get(i + 1);
+            Element qCaseItem = (Element) qCase.item(i);
 
-            Node node = qCase.item(i);
-            if (!(node instanceof Element)) {
-                continue;
-            }
+            NSDContainer<NSDElement> cont = new NSDContainer<NSDElement>(label);
+            addChildren(cont, qCaseItem);
 
-            NSDContainer<NSDElement> cont = new NSDContainer<NSDElement>(
-                    lines.get(cas.countChildren() + 1));
-            addChildren(cont, (Element) node);
             cas.addChild(cont);
-
         }
 
         return cas;
@@ -259,16 +257,12 @@ public class StructorizerReader implements NSDReader
 
         NodeList qPara = e.getElementsByTagName("qPara");
         for (int i = 0; i < qPara.getLength(); ++i) {
-
-            Node node = qPara.item(i);
-            if (!(node instanceof Element)) {
-                continue;
-            }
+            Element qParaItem = (Element) qPara.item(i);
 
             NSDContainer<NSDElement> cont = new NSDContainer<>("");
-            addChildren(cont, (Element) node);
-            parallel.addChild(cont);
+            addChildren(cont, qParaItem);
 
+            parallel.addChild(cont);
         }
 
         return parallel;

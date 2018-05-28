@@ -9,11 +9,11 @@ public class Size
     /**
      * The width / horizontal component.
      */
-    public int width;
+    public final int width;
     /**
      * The height / vertical component.
      */
-    public int height;
+    public final int height;
 
     /**
      * Constructs a new Size object with the width and height both set to 0.

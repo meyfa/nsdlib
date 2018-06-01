@@ -36,13 +36,6 @@ public class Size
     }
 
     @Override
-    public String toString()
-    {
-        return getClass().getName() + " [width=" + width + ", height=" + height
-                + "]";
-    }
-
-    @Override
     public int hashCode()
     {
         final int prime = 31;

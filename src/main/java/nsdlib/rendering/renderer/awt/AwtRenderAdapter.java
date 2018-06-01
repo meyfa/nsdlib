@@ -67,13 +67,13 @@ public class AwtRenderAdapter extends RenderAdapter<BufferedImage>
         Color prevColor = g.getColor();
 
         g.setColor(toAwtColor(col));
-        g.fillRect(x, y, w, h);
+        g.fillRect(x, y, w + 1, h + 1);
 
         g.setColor(prevColor);
     }
 
     @Override
-    public void drawStringAt(String s, int x, int y)
+    protected void drawStringAt(String s, int x, int y)
     {
         g.drawString(s, x, y);
     }

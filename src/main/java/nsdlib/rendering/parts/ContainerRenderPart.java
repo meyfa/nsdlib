@@ -82,6 +82,10 @@ public class ContainerRenderPart extends RenderPart
     @Override
     public void render(RenderAdapter<?> adapter, int x, int y, int w)
     {
+        if (children.isEmpty()) {
+            return;
+        }
+
         adapter.fillRect(x, y, w, size.height, getBackground());
 
         adapter.drawRect(x, y, w, size.height);

@@ -1,6 +1,6 @@
 # nsdlib
 
-[![Build Status](https://travis-ci.org/meyfa/nsdlib.svg?branch=master)](https://travis-ci.org/meyfa/nsdlib)
+[![Build Status](https://travis-ci.com/meyfa/nsdlib.svg?branch=master)](https://travis-ci.com/meyfa/nsdlib)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/c0a3b52c6757567ba2f5/test_coverage)](https://codeclimate.com/github/meyfa/nsdlib/test_coverage)
 [![Maintainability](https://api.codeclimate.com/v1/badges/c0a3b52c6757567ba2f5/maintainability)](https://codeclimate.com/github/meyfa/nsdlib/maintainability)
 

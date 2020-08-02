@@ -1,10 +1,9 @@
 package nsdlib.rendering.renderer;
 
-import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
-
 import nsdlib.rendering.Size;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class RenderContextTest

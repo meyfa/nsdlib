@@ -1,13 +1,11 @@
 package nsdlib.rendering.parts;
 
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertSame;
-
-import org.junit.Test;
-
 import nsdlib.elements.NSDElement;
 import nsdlib.elements.NSDInstruction;
 import nsdlib.rendering.RenderColor;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class RenderPartTest

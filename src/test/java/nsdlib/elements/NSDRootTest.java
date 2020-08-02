@@ -1,22 +1,18 @@
 package nsdlib.elements;
 
-import static org.hamcrest.CoreMatchers.instanceOf;
-
 import java.util.Arrays;
-
-import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
 
 import nsdlib.rendering.parts.RenderPart;
 import nsdlib.rendering.parts.RootRenderPart;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class NSDRootTest
 {
-    private static NSDContainer<NSDElement> child0 = new NSDContainer<>("c0");
-    private static NSDContainer<NSDElement> child1 = new NSDContainer<>("c1");
+    private static final NSDContainer<NSDElement> child0 = new NSDContainer<>("c0");
+    private static final NSDContainer<NSDElement> child1 = new NSDContainer<>("c1");
 
     @Test
     public void addsChildrenGivenToConstructor()
@@ -34,6 +30,6 @@ public class NSDRootTest
         NSDRoot obj = new NSDRoot("foo", Arrays.asList(child0, child1));
         RenderPart part = obj.toRenderPart();
 
-        assertThat(part, instanceOf(RootRenderPart.class));
+        assertTrue(part instanceof RootRenderPart);
     }
 }

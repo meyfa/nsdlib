@@ -1,7 +1,5 @@
 package nsdlib.reader;
 
-import static org.hamcrest.CoreMatchers.instanceOf;
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -11,11 +9,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
-
-import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
 
 import nsdlib.elements.NSDContainer;
 import nsdlib.elements.NSDElement;
@@ -27,17 +20,20 @@ import nsdlib.elements.loops.NSDForever;
 import nsdlib.elements.loops.NSDTestFirstLoop;
 import nsdlib.elements.loops.NSDTestLastLoop;
 import nsdlib.elements.parallel.NSDParallel;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class StructorizerReaderTest
 {
-    @Test(expected = NSDReaderException.class)
+    @Test
     public void throwsNSDReaderExceptionForInvalidInput()
-            throws NSDReaderException
     {
         StructorizerReader obj = new StructorizerReader();
-        obj.read(new ByteArrayInputStream(
-                "<root".getBytes(StandardCharsets.UTF_8)));
+        assertThrows(NSDReaderException.class, () -> {
+            obj.read(new ByteArrayInputStream("<root".getBytes(StandardCharsets.UTF_8)));
+        });
     }
 
     @Test
@@ -153,16 +149,16 @@ public class StructorizerReaderTest
 
             assertEquals(3, result.countChildren());
 
-            assertThat(result.getChild(0), instanceOf(NSDForever.class));
+            assertTrue(result.getChild(0) instanceof NSDForever);
             assertEquals("do something forever",
                     ((NSDForever) result.getChild(0)).getChild(0).getLabel());
 
-            assertThat(result.getChild(1), instanceOf(NSDTestFirstLoop.class));
+            assertTrue(result.getChild(1) instanceof NSDTestFirstLoop);
             assertEquals("do something while",
                     ((NSDTestFirstLoop) result.getChild(1)).getChild(0)
                             .getLabel());
 
-            assertThat(result.getChild(2), instanceOf(NSDTestLastLoop.class));
+            assertTrue(result.getChild(2) instanceof NSDTestLastLoop);
             assertEquals("do something until",
                     ((NSDTestLastLoop) result.getChild(2)).getChild(0)
                             .getLabel());
@@ -188,14 +184,15 @@ public class StructorizerReaderTest
         }
     }
 
-    @Test(expected = NSDReaderException.class)
-    public void throwsForUnsupportedElement()
-            throws NSDReaderException, IOException
+    @Test
+    public void throwsForUnsupportedElement() throws IOException
     {
         // resource file: structorizer/unsupported.nsd
 
         try (InputStream in = open("unsupported")) {
-            new StructorizerReader().read(in);
+            assertThrows(NSDReaderException.class, () -> {
+                new StructorizerReader().read(in);
+            });
         }
     }
 }

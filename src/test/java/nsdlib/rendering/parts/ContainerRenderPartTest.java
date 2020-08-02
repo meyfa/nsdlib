@@ -1,13 +1,6 @@
 package nsdlib.rendering.parts;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertTrue;
-
 import java.util.Arrays;
-
-import org.junit.Test;
 
 import nsdlib.elements.NSDElement;
 import nsdlib.elements.NSDInstruction;
@@ -15,6 +8,9 @@ import nsdlib.rendering.RenderColor;
 import nsdlib.rendering.Size;
 import nsdlib.rendering.parts.ContainerRenderPart.Orientation;
 import nsdlib.rendering.renderer.RenderContext;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class ContainerRenderPartTest

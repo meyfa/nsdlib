@@ -1,17 +1,12 @@
 package nsdlib.rendering.renderer;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
-import org.junit.Test;
-
 import nsdlib.elements.NSDElement;
 import nsdlib.rendering.RenderColor;
 import nsdlib.rendering.Size;
 import nsdlib.rendering.parts.RenderPart;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class NSDRendererTest

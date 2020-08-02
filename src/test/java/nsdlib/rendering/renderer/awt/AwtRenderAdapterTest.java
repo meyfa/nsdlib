@@ -1,14 +1,12 @@
 package nsdlib.rendering.renderer.awt;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertSame;
-
 import java.awt.image.BufferedImage;
-
-import org.junit.Test;
 
 import nsdlib.rendering.RenderColor;
 import nsdlib.rendering.renderer.RenderContext;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class AwtRenderAdapterTest

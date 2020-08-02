@@ -1,10 +1,8 @@
 package nsdlib.rendering;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class SizeTest
@@ -33,7 +31,7 @@ public class SizeTest
         Size obj0 = new Size(37, 42);
         Size obj1 = new Size(37, 42);
 
-        assertTrue(obj0.hashCode() == obj1.hashCode());
+        assertEquals(obj1.hashCode(), obj0.hashCode());
     }
 
     @Test
@@ -42,16 +40,15 @@ public class SizeTest
         Size obj0 = new Size(37, 42);
         Size obj1 = new Size(37, 42);
 
-        assertTrue("obj0 not considered equal to itself", obj0.equals(obj0));
+        assertEquals(obj0, obj0, "obj0 not considered equal to itself");
 
-        assertTrue("obj1 not considered equal to obj0", obj0.equals(obj1));
-        assertTrue("obj0 not considered equal to obj1", obj1.equals(obj0));
+        assertEquals(obj1, obj0, "obj1 not considered equal to obj0");
+        assertEquals(obj0, obj1, "obj0 not considered equal to obj1");
 
-        assertFalse("another type considered equal to obj0",
-                obj0.equals(new Object()));
-        assertFalse("null considered equal to obj0", obj0.equals(null));
+        assertNotEquals(new Object(), obj0, "another type considered equal to obj0");
+        assertNotEquals(obj0, null, "null considered equal to obj0");
 
         Size obj2 = new Size(100, 200);
-        assertFalse("obj2 considered equal to obj0", obj0.equals(obj2));
+        assertNotEquals(obj2, obj0, "obj2 considered equal to obj0");
     }
 }

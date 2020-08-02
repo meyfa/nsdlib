@@ -51,9 +51,7 @@ public abstract class NSDRenderer<T>
         part.layout(ctx);
         Size size = part.getSize();
 
-        RenderAdapter<T> adapter = createAdapter(ctx, size.width + 1,
-                size.height + 1);
-
+        RenderAdapter<T> adapter = createAdapter(ctx, size.width + 1, size.height + 1);
         part.render(adapter, 0, 0, size.width);
 
         return adapter.finish();
@@ -80,6 +78,5 @@ public abstract class NSDRenderer<T>
      * @param height The height of the result.
      * @return A render context appropriate for this type of renderer.
      */
-    public abstract RenderAdapter<T> createAdapter(RenderContext context,
-            int width, int height);
+    public abstract RenderAdapter<T> createAdapter(RenderContext context, int width, int height);
 }

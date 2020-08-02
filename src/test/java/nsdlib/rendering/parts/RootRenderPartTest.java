@@ -1,6 +1,7 @@
 package nsdlib.rendering.parts;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 import nsdlib.elements.NSDElement;
 import nsdlib.elements.NSDInstruction;
@@ -24,8 +25,7 @@ public class RootRenderPartTest
         MockRenderPart child1 = new MockRenderPart(source1);
 
         NSDElement sourceObj = new NSDInstruction("sourceObj");
-        RootRenderPart obj = new RootRenderPart(sourceObj, "root",
-                Arrays.asList(child0, child1));
+        RootRenderPart obj = new RootRenderPart(sourceObj, "root", Arrays.asList(child0, child1));
 
         assertSame(obj, obj.findForSource(sourceObj));
         assertSame(child0, obj.findForSource(source0));
@@ -36,15 +36,12 @@ public class RootRenderPartTest
     @Test
     public void callsLayoutForChildren()
     {
-        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5,
-                (s) -> 8);
+        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5, (s) -> 8);
 
         MockRenderPart child0 = new MockRenderPart();
         MockRenderPart child1 = new MockRenderPart();
 
-        RootRenderPart obj = new RootRenderPart(null, "root",
-                Arrays.asList(child0, child1));
-
+        RootRenderPart obj = new RootRenderPart(null, "root", Arrays.asList(child0, child1));
         obj.layout(ctx);
 
         assertTrue(child0.layoutCalled);
@@ -54,11 +51,9 @@ public class RootRenderPartTest
     @Test
     public void calculatesSizeWithoutChildren()
     {
-        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5,
-                (s) -> 8);
+        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5, (s) -> 8);
 
-        RootRenderPart obj = new RootRenderPart(null, "root", Arrays.asList());
-
+        RootRenderPart obj = new RootRenderPart(null, "root", Collections.emptyList());
         obj.layout(ctx);
 
         Size size = obj.getSize();
@@ -71,17 +66,14 @@ public class RootRenderPartTest
     @Test
     public void calculatesSizeWithChildren()
     {
-        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5,
-                (s) -> 8);
+        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5, (s) -> 8);
 
         MockRenderPart child0 = new MockRenderPart();
         child0.sizeToUse = new Size(200, 10);
         MockRenderPart child1 = new MockRenderPart();
         child1.sizeToUse = new Size(20, 10);
 
-        RootRenderPart obj = new RootRenderPart(null, "root",
-                Arrays.asList(child0, child1));
-
+        RootRenderPart obj = new RootRenderPart(null, "root", Arrays.asList(child0, child1));
         obj.layout(ctx);
 
         Size size = obj.getSize();
@@ -94,11 +86,10 @@ public class RootRenderPartTest
     @Test
     public void rendersBackground()
     {
-        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5,
-                (s) -> 8);
+        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5, (s) -> 8);
         MockRenderAdapter adapter = new MockRenderAdapter(ctx);
 
-        RootRenderPart obj = new RootRenderPart(null, "root", Arrays.asList());
+        RootRenderPart obj = new RootRenderPart(null, "root", Collections.emptyList());
         obj.setBackground(new RenderColor(0xFF, 0, 0));
         obj.layout(ctx);
 
@@ -110,15 +101,13 @@ public class RootRenderPartTest
     @Test
     public void rendersChildren()
     {
-        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5,
-                (s) -> 8);
+        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5, (s) -> 8);
         MockRenderAdapter adapter = new MockRenderAdapter(ctx);
 
         MockRenderPart child0 = new MockRenderPart();
         MockRenderPart child1 = new MockRenderPart();
 
-        RootRenderPart obj = new RootRenderPart(null, "root",
-                Arrays.asList(child0, child1));
+        RootRenderPart obj = new RootRenderPart(null, "root", Arrays.asList(child0, child1));
         obj.layout(ctx);
 
         obj.render(adapter, 0, 0, obj.getSize().width);
@@ -126,7 +115,7 @@ public class RootRenderPartTest
         assertTrue(child0.renderCalled);
         assertTrue(child1.renderCalled);
 
-        assertTrue(child0.renderX == child1.renderX);
+        assertEquals(child1.renderX, child0.renderX);
         assertEquals(child0.renderY + child0.getSize().height, child1.renderY);
         assertEquals(child0.getSize().width, child0.renderW);
         assertEquals(child1.getSize().width, child1.renderW);

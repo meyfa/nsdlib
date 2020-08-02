@@ -28,8 +28,7 @@ public class NSDCase extends NSDContainer<NSDContainer<NSDElement>>
      * @param label The element's label.
      * @param children The element's initial child elements.
      */
-    public NSDCase(String label,
-            Collection<? extends NSDContainer<NSDElement>> children)
+    public NSDCase(String label, Collection<? extends NSDContainer<NSDElement>> children)
     {
         super(label, children);
     }
@@ -37,8 +36,7 @@ public class NSDCase extends NSDContainer<NSDContainer<NSDElement>>
     @Override
     public RenderPart toRenderPart()
     {
-        return new AlternativesRenderPart(this, getLabel(), getChildLabels(),
-                getChildRenderParts());
+        return new AlternativesRenderPart(this, getLabel(), getChildLabels(), getChildRenderParts());
     }
 
     private List<String> getChildLabels()

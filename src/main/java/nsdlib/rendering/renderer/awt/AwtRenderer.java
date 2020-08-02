@@ -31,10 +31,9 @@ public class AwtRenderer extends NSDRenderer<BufferedImage>
     }
 
     @Override
-    public RenderAdapter<BufferedImage> createAdapter(RenderContext context,
-            int width, int height)
+    public RenderAdapter<BufferedImage> createAdapter(RenderContext context, int width, int height)
     {
-        return new AwtRenderAdapter(context,
-                new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB));
+        BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+        return new AwtRenderAdapter(context, img);
     }
 }

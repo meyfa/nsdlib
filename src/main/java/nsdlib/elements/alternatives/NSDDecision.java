@@ -40,8 +40,7 @@ public class NSDDecision extends NSDElement
      * @param then The child elements for the "then" branch.
      * @param otherwise The child elements for the "else" branch.
      */
-    public NSDDecision(String label, Collection<? extends NSDElement> then,
-            Collection<? extends NSDElement> otherwise)
+    public NSDDecision(String label, Collection<? extends NSDElement> then, Collection<? extends NSDElement> otherwise)
     {
         super(label);
 
@@ -68,10 +67,8 @@ public class NSDDecision extends NSDElement
     @Override
     public RenderPart toRenderPart()
     {
-        List<String> labels = Arrays.asList(then.getLabel(),
-                otherwise.getLabel());
-        List<RenderPart> contents = Arrays.asList(then.toRenderPart(),
-                otherwise.toRenderPart());
+        List<String> labels = Arrays.asList(then.getLabel(), otherwise.getLabel());
+        List<RenderPart> contents = Arrays.asList(then.toRenderPart(), otherwise.toRenderPart());
 
         return new AlternativesRenderPart(this, getLabel(), labels, contents);
     }

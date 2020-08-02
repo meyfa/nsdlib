@@ -48,9 +48,8 @@ public class StructorizerReaderTest
 
         StructorizerReader obj = new StructorizerReader();
         try {
-            obj.read(new ByteArrayInputStream(
-                    "<root".getBytes(StandardCharsets.UTF_8)));
-        } catch (Exception e) {
+            obj.read(new ByteArrayInputStream("<root".getBytes(StandardCharsets.UTF_8)));
+        } catch (Exception ignored) {
         }
         str.flush();
 
@@ -97,8 +96,7 @@ public class StructorizerReaderTest
             assertEquals("basic instruction (42, \"qux\")", instr0.getLabel());
 
             NSDInstruction instr1 = (NSDInstruction) result.getChild(1);
-            assertEquals("double \"\" triple \"\"\" quadruple \"\"\"\" quotes",
-                    instr1.getLabel());
+            assertEquals("double \"\" triple \"\"\" quadruple \"\"\"\" quotes", instr1.getLabel());
         }
     }
 
@@ -150,18 +148,13 @@ public class StructorizerReaderTest
             assertEquals(3, result.countChildren());
 
             assertTrue(result.getChild(0) instanceof NSDForever);
-            assertEquals("do something forever",
-                    ((NSDForever) result.getChild(0)).getChild(0).getLabel());
+            assertEquals("do something forever", ((NSDForever) result.getChild(0)).getChild(0).getLabel());
 
             assertTrue(result.getChild(1) instanceof NSDTestFirstLoop);
-            assertEquals("do something while",
-                    ((NSDTestFirstLoop) result.getChild(1)).getChild(0)
-                            .getLabel());
+            assertEquals("do something while", ((NSDTestFirstLoop) result.getChild(1)).getChild(0).getLabel());
 
             assertTrue(result.getChild(2) instanceof NSDTestLastLoop);
-            assertEquals("do something until",
-                    ((NSDTestLastLoop) result.getChild(2)).getChild(0)
-                            .getLabel());
+            assertEquals("do something until", ((NSDTestLastLoop) result.getChild(2)).getChild(0).getLabel());
         }
     }
 
@@ -190,9 +183,7 @@ public class StructorizerReaderTest
         // resource file: structorizer/unsupported.nsd
 
         try (InputStream in = open("unsupported")) {
-            assertThrows(NSDReaderException.class, () -> {
-                new StructorizerReader().read(in);
-            });
+            assertThrows(NSDReaderException.class, () -> new StructorizerReader().read(in));
         }
     }
 }

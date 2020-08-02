@@ -16,11 +16,9 @@ import nsdlib.rendering.parts.RenderPart;
  * Base class for any element type that can contain child elements (e.g. loops).
  * Can also be instantiated directly if an anonymous container is needed.
  *
- * @param <T> The type of element that may be added to this container. Use
- *            {@link NSDElement} to accept any.
+ * @param <T> The type of element that may be added to this container. Use {@link NSDElement} to accept any.
  */
-public class NSDContainer<T extends NSDElement> extends NSDElement
-        implements Iterable<T>
+public class NSDContainer<T extends NSDElement> extends NSDElement implements Iterable<T>
 {
     private final List<T> children;
 
@@ -40,8 +38,7 @@ public class NSDContainer<T extends NSDElement> extends NSDElement
     {
         super(label);
 
-        this.children = children == null ? new ArrayList<>()
-                : new ArrayList<>(children);
+        this.children = children == null ? new ArrayList<>() : new ArrayList<>(children);
     }
 
     /**
@@ -125,8 +122,7 @@ public class NSDContainer<T extends NSDElement> extends NSDElement
             throw new IllegalArgumentException("element may not be null");
         }
         if (e == this) {
-            throw new IllegalArgumentException(
-                    "element may not be its own child");
+            throw new IllegalArgumentException("element may not be its own child");
         }
     }
 
@@ -147,8 +143,7 @@ public class NSDContainer<T extends NSDElement> extends NSDElement
     @Override
     public RenderPart toRenderPart()
     {
-        return new ContainerRenderPart(Orientation.VERTICAL,
-                getChildRenderParts());
+        return new ContainerRenderPart(Orientation.VERTICAL, getChildRenderParts());
     }
 
     /**
@@ -156,7 +151,6 @@ public class NSDContainer<T extends NSDElement> extends NSDElement
      */
     protected List<RenderPart> getChildRenderParts()
     {
-        return stream().map(NSDElement::toRenderPart)
-                .collect(Collectors.toList());
+        return stream().map(NSDElement::toRenderPart).collect(Collectors.toList());
     }
 }

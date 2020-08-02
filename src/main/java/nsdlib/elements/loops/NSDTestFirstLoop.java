@@ -26,8 +26,7 @@ public class NSDTestFirstLoop extends NSDContainer<NSDElement>
      * @param label The element's label.
      * @param children The element's initial child elements.
      */
-    public NSDTestFirstLoop(String label,
-            Collection<? extends NSDElement> children)
+    public NSDTestFirstLoop(String label, Collection<? extends NSDElement> children)
     {
         super(label, children);
     }
@@ -35,7 +34,6 @@ public class NSDTestFirstLoop extends NSDContainer<NSDElement>
     @Override
     public RenderPart toRenderPart()
     {
-        return new BraceRenderPart(this, getChildRenderParts(), true,
-                getLabel(), false, null);
+        return new BraceRenderPart(this, getChildRenderParts(), true, getLabel(), false, null);
     }
 }

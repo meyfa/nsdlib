@@ -28,8 +28,7 @@ public class NSDReaderException extends Exception
     }
 
     /**
-     * Constructs an exception with the given detail message and the given
-     * cause.
+     * Constructs an exception with the given detail message and the given cause.
      *
      * @param message The detail message.
      * @param cause The throwable that caused this exception to be thrown.

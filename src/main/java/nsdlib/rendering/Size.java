@@ -1,5 +1,7 @@
 package nsdlib.rendering;
 
+import java.util.Objects;
+
 /**
  * Class for measuring the 2-dimensional size of something (i.e., the width and
  * height).
@@ -38,11 +40,7 @@ public class Size
     @Override
     public int hashCode()
     {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + height;
-        result = prime * result + width;
-        return result;
+        return Objects.hash(width, height);
     }
 
     @Override

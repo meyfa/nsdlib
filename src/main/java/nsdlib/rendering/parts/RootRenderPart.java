@@ -28,8 +28,7 @@ public class RootRenderPart extends RenderPart
      * @param label The part's label.
      * @param children This container's child parts.
      */
-    public RootRenderPart(NSDElement source, String label,
-            Collection<? extends RenderPart> children)
+    public RootRenderPart(NSDElement source, String label, Collection<? extends RenderPart> children)
     {
         super(source);
 

@@ -33,9 +33,8 @@ public class BraceRenderPart extends RenderPart
      * @param hasBottom Whether a bottom part shall be rendered for the brace.
      * @param bottom The brace's bottom part label.
      */
-    public BraceRenderPart(NSDElement source,
-            Collection<? extends RenderPart> children, boolean hasTop,
-            String top, boolean hasBottom, String bottom)
+    public BraceRenderPart(NSDElement source, Collection<? extends RenderPart> children,
+                           boolean hasTop, String top, boolean hasBottom, String bottom)
     {
         super(source);
 
@@ -139,7 +138,7 @@ public class BraceRenderPart extends RenderPart
         }
     }
 
-    private int drawBottom(RenderAdapter<?> a, int x, int y, int w)
+    private void drawBottom(RenderAdapter<?> a, int x, int y, int w)
     {
         a.fillRect(x, y, w, bottomHeight, getBackground());
 
@@ -152,7 +151,5 @@ public class BraceRenderPart extends RenderPart
         a.drawLine(x, y + bottomHeight, x + w, y + bottomHeight);
 
         a.drawStringLeft(bottom, x, y);
-
-        return bottomHeight;
     }
 }

@@ -39,11 +39,9 @@ public class AlternativesRenderPart extends RenderPart
         super(source);
 
         this.label = label;
-        this.pathLabels = Collections
-                .unmodifiableList(new ArrayList<>(pathLabels));
+        this.pathLabels = Collections.unmodifiableList(new ArrayList<>(pathLabels));
 
-        this.content = new ContainerRenderPart(Orientation.HORIZONTAL,
-                pathContents);
+        this.content = new ContainerRenderPart(Orientation.HORIZONTAL, pathContents);
     }
 
     @Override
@@ -106,7 +104,6 @@ public class AlternativesRenderPart extends RenderPart
         double linkAngleTan = Math.tan(Math.asin(triangleHeight / hypotLength));
 
         for (int i = 0, n = pathLabels.size(); i < n; ++i) {
-
             a.drawStringCentered(pathLabels.get(i), x + caseWidth / 2, y);
             x += caseWidth;
 
@@ -116,7 +113,6 @@ public class AlternativesRenderPart extends RenderPart
                 int adjacent = (int) Math.abs(linkAngleTan * (x - lastSepX));
                 a.drawLine(x, y - adjacent, x, y + triangleHeight);
             }
-
         }
 
         return headingHeight;

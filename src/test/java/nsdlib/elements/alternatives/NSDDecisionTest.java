@@ -1,6 +1,6 @@
 package nsdlib.elements.alternatives;
 
-import java.util.Arrays;
+import java.util.Collections;
 
 import nsdlib.elements.NSDContainer;
 import nsdlib.elements.NSDElement;
@@ -23,12 +23,11 @@ public class NSDDecisionTest
         assertEquals(0, obj.getThen().countChildren());
         assertEquals(0, obj.getElse().countChildren());
 
-        obj = new NSDDecision("foo", Arrays.asList(child0));
+        obj = new NSDDecision("foo", Collections.singletonList(child0));
         assertEquals(1, obj.getThen().countChildren());
         assertEquals(0, obj.getElse().countChildren());
 
-        obj = new NSDDecision("foo", Arrays.asList(child0),
-                Arrays.asList(child1));
+        obj = new NSDDecision("foo", Collections.singletonList(child0), Collections.singletonList(child1));
         assertEquals(1, obj.getThen().countChildren());
         assertEquals(1, obj.getElse().countChildren());
     }

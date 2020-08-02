@@ -29,8 +29,7 @@ public class NSDTestLastLoopTest
     @Test
     public void convertsToBraceRenderPart()
     {
-        NSDTestLastLoop obj = new NSDTestLastLoop("foo",
-                Arrays.asList(child0, child1));
+        NSDTestLastLoop obj = new NSDTestLastLoop("foo", Arrays.asList(child0, child1));
         RenderPart part = obj.toRenderPart();
 
         assertTrue(part instanceof BraceRenderPart);

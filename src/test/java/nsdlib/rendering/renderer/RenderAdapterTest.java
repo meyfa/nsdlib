@@ -53,8 +53,7 @@ public class RenderAdapterTest
     @Test
     public void drawStringLeftUsesCorrectCoordinates()
     {
-        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5,
-                (s) -> 8);
+        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5, (s) -> 8);
         RenderAdapterMock obj = new RenderAdapterMock(ctx);
 
         obj.drawStringLeft("Hello World!", 40, 60);
@@ -68,8 +67,7 @@ public class RenderAdapterTest
     @Test
     public void drawStringLeftIgnoresNull()
     {
-        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5,
-                (s) -> 8);
+        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5, (s) -> 8);
         RenderAdapterMock obj = new RenderAdapterMock(ctx);
 
         obj.drawStringLeft(null, 40, 60);
@@ -80,8 +78,7 @@ public class RenderAdapterTest
     @Test
     public void drawStringCenteredUsesCorrectCoordinates()
     {
-        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5,
-                (s) -> 8);
+        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5, (s) -> 8);
         RenderAdapterMock obj = new RenderAdapterMock(ctx);
 
         obj.drawStringCentered("Hello World!", 40, 60);
@@ -95,8 +92,7 @@ public class RenderAdapterTest
     @Test
     public void drawStringCenteredIgnoresNull()
     {
-        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5,
-                (s) -> 8);
+        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5, (s) -> 8);
         RenderAdapterMock obj = new RenderAdapterMock(ctx);
 
         obj.drawStringCentered(null, 40, 60);

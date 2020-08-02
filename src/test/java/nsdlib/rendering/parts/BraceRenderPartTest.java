@@ -1,6 +1,7 @@
 package nsdlib.rendering.parts;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 import nsdlib.elements.NSDElement;
 import nsdlib.elements.NSDInstruction;
@@ -24,8 +25,7 @@ public class BraceRenderPartTest
         MockRenderPart child1 = new MockRenderPart(source1);
 
         NSDElement sourceObj = new NSDInstruction("sourceObj");
-        BraceRenderPart obj = new BraceRenderPart(sourceObj,
-                Arrays.asList(child0, child1), true, "", true, "");
+        BraceRenderPart obj = new BraceRenderPart(sourceObj, Arrays.asList(child0, child1), true, "", true, "");
 
         assertSame(obj, obj.findForSource(sourceObj));
         assertSame(child0, obj.findForSource(source0));
@@ -36,14 +36,12 @@ public class BraceRenderPartTest
     @Test
     public void callsLayoutForChildren()
     {
-        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5,
-                (s) -> 8);
+        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5, (s) -> 8);
 
         MockRenderPart child0 = new MockRenderPart();
         MockRenderPart child1 = new MockRenderPart();
 
-        BraceRenderPart obj = new BraceRenderPart(null,
-                Arrays.asList(child0, child1), true, "", true, "");
+        BraceRenderPart obj = new BraceRenderPart(null, Arrays.asList(child0, child1), true, "", true, "");
 
         obj.layout(ctx);
 
@@ -54,11 +52,9 @@ public class BraceRenderPartTest
     @Test
     public void calculatesSizeWithoutChildren()
     {
-        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5,
-                (s) -> 8);
+        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5, (s) -> 8);
 
-        BraceRenderPart obj = new BraceRenderPart(null, Arrays.asList(), true,
-                "top", true, "bottom");
+        BraceRenderPart obj = new BraceRenderPart(null, Collections.emptyList(), true, "top", true, "bottom");
 
         obj.layout(ctx);
 
@@ -72,11 +68,9 @@ public class BraceRenderPartTest
     @Test
     public void calculatesSizeWithoutChildrenOrTop()
     {
-        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5,
-                (s) -> 8);
+        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5, (s) -> 8);
 
-        BraceRenderPart obj = new BraceRenderPart(null, Arrays.asList(), false,
-                "top", true, "bottom");
+        BraceRenderPart obj = new BraceRenderPart(null, Collections.emptyList(), false, "top", true, "bottom");
 
         obj.layout(ctx);
 
@@ -90,11 +84,9 @@ public class BraceRenderPartTest
     @Test
     public void calculatesSizeWithoutChildrenOrBottom()
     {
-        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5,
-                (s) -> 8);
+        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5, (s) -> 8);
 
-        BraceRenderPart obj = new BraceRenderPart(null, Arrays.asList(), true,
-                "top", false, "bottom");
+        BraceRenderPart obj = new BraceRenderPart(null, Collections.emptyList(), true, "top", false, "bottom");
 
         obj.layout(ctx);
 
@@ -108,16 +100,14 @@ public class BraceRenderPartTest
     @Test
     public void calculatesSizeWithChildren()
     {
-        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5,
-                (s) -> 8);
+        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5, (s) -> 8);
 
         MockRenderPart child0 = new MockRenderPart();
         child0.sizeToUse = new Size(200, 40);
         MockRenderPart child1 = new MockRenderPart();
         child1.sizeToUse = new Size(20, 20);
 
-        BraceRenderPart obj = new BraceRenderPart(null,
-                Arrays.asList(child0, child1), true, "top", true, "bottom");
+        BraceRenderPart obj = new BraceRenderPart(null, Arrays.asList(child0, child1), true, "top", true, "bottom");
 
         obj.layout(ctx);
 
@@ -131,12 +121,10 @@ public class BraceRenderPartTest
     @Test
     public void rendersBackground()
     {
-        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5,
-                (s) -> 8);
+        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5, (s) -> 8);
         MockRenderAdapter adapter = new MockRenderAdapter(ctx);
 
-        BraceRenderPart obj = new BraceRenderPart(null, Arrays.asList(), true,
-                "top", true, "bottom");
+        BraceRenderPart obj = new BraceRenderPart(null, Collections.emptyList(), true, "top", true, "bottom");
         obj.setBackground(new RenderColor(0xFF, 0, 0));
         obj.layout(ctx);
 
@@ -148,8 +136,7 @@ public class BraceRenderPartTest
     @Test
     public void rendersChildren()
     {
-        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5,
-                (s) -> 8);
+        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5, (s) -> 8);
         MockRenderAdapter adapter = new MockRenderAdapter(ctx);
 
         MockRenderPart child0 = new MockRenderPart();
@@ -157,8 +144,7 @@ public class BraceRenderPartTest
         MockRenderPart child1 = new MockRenderPart();
         child1.sizeToUse = new Size(20, 20);
 
-        BraceRenderPart obj = new BraceRenderPart(null,
-                Arrays.asList(child0, child1), true, "top", true, "bottom");
+        BraceRenderPart obj = new BraceRenderPart(null, Arrays.asList(child0, child1), true, "top", true, "bottom");
         obj.layout(ctx);
 
         obj.render(adapter, 0, 0, obj.getSize().width);
@@ -166,7 +152,7 @@ public class BraceRenderPartTest
         assertTrue(child0.renderCalled);
         assertTrue(child1.renderCalled);
 
-        assertTrue(child0.renderX == child1.renderX);
+        assertEquals(child1.renderX, child0.renderX);
         assertEquals(child0.renderY + 40, child1.renderY);
         assertEquals(200, child0.renderW);
         assertEquals(200, child1.renderW);

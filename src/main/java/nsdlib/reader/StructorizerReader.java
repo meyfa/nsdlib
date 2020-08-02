@@ -3,7 +3,7 @@ package nsdlib.reader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -77,8 +77,7 @@ public class StructorizerReader implements NSDReader
      * @param e The element whose child elements shall be parsed.
      * @throws NSDReaderException If an unsupported tag is encountered.
      */
-    private void addChildren(NSDContainer<NSDElement> cont, Element e)
-            throws NSDReaderException
+    private void addChildren(NSDContainer<NSDElement> cont, Element e) throws NSDReaderException
     {
         NodeList nodes = e.getChildNodes();
 
@@ -140,7 +139,7 @@ public class StructorizerReader implements NSDReader
     private List<String> deserialize(String s)
     {
         if (!s.startsWith("\"") || !s.endsWith("\"")) {
-            return Arrays.asList(s);
+            return Collections.singletonList(s);
         }
 
         List<String> strings = new ArrayList<>();
@@ -208,7 +207,7 @@ public class StructorizerReader implements NSDReader
             String label = lines.get(i + 1);
             Element qCaseItem = (Element) qCase.item(i);
 
-            NSDContainer<NSDElement> cont = new NSDContainer<NSDElement>(label);
+            NSDContainer<NSDElement> cont = new NSDContainer<>(label);
             addChildren(cont, qCaseItem);
 
             cas.addChild(cont);
@@ -227,8 +226,7 @@ public class StructorizerReader implements NSDReader
         return loop;
     }
 
-    private NSDTestFirstLoop parseTestFirstLoop(Element e)
-            throws NSDReaderException
+    private NSDTestFirstLoop parseTestFirstLoop(Element e) throws NSDReaderException
     {
         String label = deserialize(e.getAttribute("text")).get(0);
         NSDTestFirstLoop loop = new NSDTestFirstLoop(label);
@@ -239,8 +237,7 @@ public class StructorizerReader implements NSDReader
         return loop;
     }
 
-    private NSDTestLastLoop parseTestLastLoop(Element e)
-            throws NSDReaderException
+    private NSDTestLastLoop parseTestLastLoop(Element e) throws NSDReaderException
     {
         String label = deserialize(e.getAttribute("text")).get(0);
         NSDTestLastLoop loop = new NSDTestLastLoop(label);

@@ -35,14 +35,12 @@ public class AwtRenderAdapter extends RenderAdapter<BufferedImage>
         g.setFont(AwtRenderer.font);
         g.setColor(Color.BLACK);
 
-        g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-                RenderingHints.VALUE_ANTIALIAS_ON);
+        g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
     }
 
     private Color toAwtColor(RenderColor col)
     {
-        return new Color(col.getRed(), col.getGreen(), col.getBlue(),
-                col.getAlpha());
+        return new Color(col.getRed(), col.getGreen(), col.getBlue(), col.getAlpha());
     }
 
     @Override

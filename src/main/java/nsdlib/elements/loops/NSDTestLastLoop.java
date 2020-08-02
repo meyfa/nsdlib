@@ -27,8 +27,7 @@ public class NSDTestLastLoop extends NSDContainer<NSDElement>
      * @param label The element's label.
      * @param children The element's initial child elements.
      */
-    public NSDTestLastLoop(String label,
-            Collection<? extends NSDElement> children)
+    public NSDTestLastLoop(String label, Collection<? extends NSDElement> children)
     {
         super(label, children);
     }
@@ -36,7 +35,6 @@ public class NSDTestLastLoop extends NSDContainer<NSDElement>
     @Override
     public RenderPart toRenderPart()
     {
-        return new BraceRenderPart(this, getChildRenderParts(), false, null,
-                true, getLabel());
+        return new BraceRenderPart(this, getChildRenderParts(), false, null, true, getLabel());
     }
 }

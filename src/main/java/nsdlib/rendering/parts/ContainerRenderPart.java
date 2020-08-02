@@ -1,9 +1,6 @@
 package nsdlib.rendering.parts;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import nsdlib.elements.NSDElement;
 import nsdlib.rendering.Size;
@@ -28,8 +25,7 @@ public class ContainerRenderPart extends RenderPart
      * @param orientation Whether this is a horizontal or vertical layout.
      * @param children This container's child parts.
      */
-    public ContainerRenderPart(Orientation orientation,
-            Collection<? extends RenderPart> children)
+    public ContainerRenderPart(Orientation orientation, Collection<? extends RenderPart> children)
     {
         this.orientation = orientation;
         this.children = Collections.unmodifiableList(new ArrayList<>(children));
@@ -42,7 +38,7 @@ public class ContainerRenderPart extends RenderPart
             return this;
         }
         return children.stream().map(c -> c.findForSource(source))
-                .filter(p -> p != null).findAny().orElse(null);
+                .filter(Objects::nonNull).findAny().orElse(null);
     }
 
     @Override
@@ -109,7 +105,7 @@ public class ContainerRenderPart extends RenderPart
     /**
      * Specifies a container's layout direction.
      */
-    public static enum Orientation
+    public enum Orientation
     {
         /**
          * The container shall lay out its components next to each other,
@@ -121,6 +117,6 @@ public class ContainerRenderPart extends RenderPart
          * The container shall lay out its components vertically, allocating the
          * full width to every one of them.
          */
-        VERTICAL;
+        VERTICAL
     }
 }

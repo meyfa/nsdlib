@@ -19,8 +19,7 @@ public class RenderContext
      * @param stringWidth A function taking a String that returns its width.
      * @param stringHeight A function taking a String that returns its height.
      */
-    public RenderContext(int padH, int padV, ToIntFunction<String> stringWidth,
-            ToIntFunction<String> stringHeight)
+    public RenderContext(int padH, int padV, ToIntFunction<String> stringWidth, ToIntFunction<String> stringHeight)
     {
         this.padH = padH;
         this.padV = padV;

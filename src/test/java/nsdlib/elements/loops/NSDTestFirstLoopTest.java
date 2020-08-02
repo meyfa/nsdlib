@@ -29,8 +29,7 @@ public class NSDTestFirstLoopTest
     @Test
     public void convertsToBraceRenderPart()
     {
-        NSDTestFirstLoop obj = new NSDTestFirstLoop("foo",
-                Arrays.asList(child0, child1));
+        NSDTestFirstLoop obj = new NSDTestFirstLoop("foo", Arrays.asList(child0, child1));
         RenderPart part = obj.toRenderPart();
 
         assertTrue(part instanceof BraceRenderPart);

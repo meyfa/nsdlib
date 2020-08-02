@@ -23,8 +23,7 @@ public class NSDRendererTest
         }
 
         @Override
-        public RenderAdapter<Object> createAdapter(RenderContext context,
-                int width, int height)
+        public RenderAdapter<Object> createAdapter(RenderContext context, int width, int height)
         {
             return new RenderAdapter<Object>(context) {
                 @Override
@@ -34,8 +33,7 @@ public class NSDRendererTest
                 }
 
                 @Override
-                public void fillRect(int x, int y, int w, int h,
-                        RenderColor col)
+                public void fillRect(int x, int y, int w, int h, RenderColor col)
                 {
                 }
 
@@ -93,12 +91,12 @@ public class NSDRendererTest
 
     private static class NSDElementMock extends NSDElement
     {
+        private RenderPartMock renderPartToUse;
+
         public NSDElementMock()
         {
             super("mock");
         }
-
-        private RenderPartMock renderPartToUse;
 
         @Override
         public RenderPart toRenderPart()
@@ -111,8 +109,7 @@ public class NSDRendererTest
     public void callsLayout()
     {
         NSDRendererMock obj = new NSDRendererMock();
-        obj.contextToUse = new RenderContext(8, 10, (s) -> s.length() * 5,
-                (s) -> 8);
+        obj.contextToUse = new RenderContext(8, 10, (s) -> s.length() * 5, (s) -> 8);
 
         RenderPartMock part = new RenderPartMock();
         part.sizeToUse = new Size(40, 16);
@@ -126,8 +123,7 @@ public class NSDRendererTest
     public void callsRenderWithCorrectArguments()
     {
         NSDRendererMock obj = new NSDRendererMock();
-        obj.contextToUse = new RenderContext(8, 10, (s) -> s.length() * 5,
-                (s) -> 8);
+        obj.contextToUse = new RenderContext(8, 10, (s) -> s.length() * 5, (s) -> 8);
 
         RenderPartMock part = new RenderPartMock();
         part.sizeToUse = new Size(40, 16);
@@ -145,8 +141,7 @@ public class NSDRendererTest
     public void returnsAdapterFinishResult()
     {
         NSDRendererMock obj = new NSDRendererMock();
-        obj.contextToUse = new RenderContext(8, 10, (s) -> s.length() * 5,
-                (s) -> 8);
+        obj.contextToUse = new RenderContext(8, 10, (s) -> s.length() * 5, (s) -> 8);
         obj.resultToUse = new Object();
 
         RenderPartMock part = new RenderPartMock();
@@ -159,8 +154,7 @@ public class NSDRendererTest
     public void convertsElementToRenderPart()
     {
         NSDRendererMock obj = new NSDRendererMock();
-        obj.contextToUse = new RenderContext(8, 10, (s) -> s.length() * 5,
-                (s) -> 8);
+        obj.contextToUse = new RenderContext(8, 10, (s) -> s.length() * 5, (s) -> 8);
 
         RenderPartMock part = new RenderPartMock();
         part.sizeToUse = new Size(40, 16);

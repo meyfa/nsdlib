@@ -25,9 +25,7 @@ public class BoxRenderPartTest
     @Test
     public void calculatesSize()
     {
-        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5,
-                (s) -> 8);
-
+        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5, (s) -> 8);
         BoxRenderPart obj = new BoxRenderPart(null, "box");
 
         obj.layout(ctx);
@@ -42,8 +40,7 @@ public class BoxRenderPartTest
     @Test
     public void rendersBackground()
     {
-        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5,
-                (s) -> 8);
+        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5, (s) -> 8);
         MockRenderAdapter adapter = new MockRenderAdapter(ctx);
 
         BoxRenderPart obj = new BoxRenderPart(null, "box");

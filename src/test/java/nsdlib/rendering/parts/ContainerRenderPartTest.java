@@ -1,6 +1,7 @@
 package nsdlib.rendering.parts;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 import nsdlib.elements.NSDElement;
 import nsdlib.elements.NSDInstruction;
@@ -24,8 +25,7 @@ public class ContainerRenderPartTest
         NSDElement source1 = new NSDInstruction("source1");
         MockRenderPart child1 = new MockRenderPart(source1);
 
-        ContainerRenderPart obj = new ContainerRenderPart(Orientation.VERTICAL,
-                Arrays.asList(child0, child1));
+        ContainerRenderPart obj = new ContainerRenderPart(Orientation.VERTICAL, Arrays.asList(child0, child1));
 
         assertSame(child0, obj.findForSource(source0));
         assertSame(child1, obj.findForSource(source1));
@@ -35,14 +35,12 @@ public class ContainerRenderPartTest
     @Test
     public void callsLayoutForChildren()
     {
-        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5,
-                (s) -> 8);
+        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5, (s) -> 8);
 
         MockRenderPart child0 = new MockRenderPart();
         MockRenderPart child1 = new MockRenderPart();
 
-        ContainerRenderPart obj = new ContainerRenderPart(Orientation.VERTICAL,
-                Arrays.asList(child0, child1));
+        ContainerRenderPart obj = new ContainerRenderPart(Orientation.VERTICAL, Arrays.asList(child0, child1));
 
         obj.layout(ctx);
 
@@ -53,11 +51,8 @@ public class ContainerRenderPartTest
     @Test
     public void calculatesSizeWithoutChildrenVertical()
     {
-        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5,
-                (s) -> 8);
-
-        ContainerRenderPart obj = new ContainerRenderPart(Orientation.VERTICAL,
-                Arrays.asList());
+        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5, (s) -> 8);
+        ContainerRenderPart obj = new ContainerRenderPart(Orientation.VERTICAL, Collections.emptyList());
 
         obj.layout(ctx);
 
@@ -69,11 +64,8 @@ public class ContainerRenderPartTest
     @Test
     public void calculatesSizeWithoutChildrenHorizontal()
     {
-        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5,
-                (s) -> 8);
-
-        ContainerRenderPart obj = new ContainerRenderPart(
-                Orientation.HORIZONTAL, Arrays.asList());
+        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5, (s) -> 8);
+        ContainerRenderPart obj = new ContainerRenderPart(Orientation.HORIZONTAL, Collections.emptyList());
 
         obj.layout(ctx);
 
@@ -85,16 +77,14 @@ public class ContainerRenderPartTest
     @Test
     public void calculatesSizeWithChildrenVertical()
     {
-        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5,
-                (s) -> 8);
+        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5, (s) -> 8);
 
         MockRenderPart child0 = new MockRenderPart();
         child0.sizeToUse = new Size(200, 40);
         MockRenderPart child1 = new MockRenderPart();
         child1.sizeToUse = new Size(20, 20);
 
-        ContainerRenderPart obj = new ContainerRenderPart(Orientation.VERTICAL,
-                Arrays.asList(child0, child1));
+        ContainerRenderPart obj = new ContainerRenderPart(Orientation.VERTICAL, Arrays.asList(child0, child1));
 
         obj.layout(ctx);
 
@@ -106,16 +96,14 @@ public class ContainerRenderPartTest
     @Test
     public void calculatesSizeWithChildrenHorizontal()
     {
-        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5,
-                (s) -> 8);
+        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5, (s) -> 8);
 
         MockRenderPart child0 = new MockRenderPart();
         child0.sizeToUse = new Size(200, 40);
         MockRenderPart child1 = new MockRenderPart();
         child1.sizeToUse = new Size(20, 20);
 
-        ContainerRenderPart obj = new ContainerRenderPart(
-                Orientation.HORIZONTAL, Arrays.asList(child0, child1));
+        ContainerRenderPart obj = new ContainerRenderPart(Orientation.HORIZONTAL, Arrays.asList(child0, child1));
 
         obj.layout(ctx);
 
@@ -129,15 +117,13 @@ public class ContainerRenderPartTest
     @Test
     public void rendersBackground()
     {
-        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5,
-                (s) -> 8);
+        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5, (s) -> 8);
         MockRenderAdapter adapter = new MockRenderAdapter(ctx);
 
         MockRenderPart child0 = new MockRenderPart();
         MockRenderPart child1 = new MockRenderPart();
 
-        ContainerRenderPart obj = new ContainerRenderPart(Orientation.VERTICAL,
-                Arrays.asList(child0, child1));
+        ContainerRenderPart obj = new ContainerRenderPart(Orientation.VERTICAL, Arrays.asList(child0, child1));
         obj.setBackground(new RenderColor(0xFF, 0, 0));
         obj.layout(ctx);
 
@@ -149,8 +135,7 @@ public class ContainerRenderPartTest
     @Test
     public void rendersChildrenVertical()
     {
-        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5,
-                (s) -> 8);
+        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5, (s) -> 8);
         MockRenderAdapter adapter = new MockRenderAdapter(ctx);
 
         MockRenderPart child0 = new MockRenderPart();
@@ -158,8 +143,7 @@ public class ContainerRenderPartTest
         MockRenderPart child1 = new MockRenderPart();
         child1.sizeToUse = new Size(20, 20);
 
-        ContainerRenderPart obj = new ContainerRenderPart(Orientation.VERTICAL,
-                Arrays.asList(child0, child1));
+        ContainerRenderPart obj = new ContainerRenderPart(Orientation.VERTICAL, Arrays.asList(child0, child1));
         obj.layout(ctx);
 
         obj.render(adapter, 0, 0, obj.getSize().width);
@@ -167,7 +151,7 @@ public class ContainerRenderPartTest
         assertTrue(child0.renderCalled);
         assertTrue(child1.renderCalled);
 
-        assertTrue(child0.renderX == child1.renderX);
+        assertEquals(child1.renderX, child0.renderX);
         assertEquals(child0.renderY + 40, child1.renderY);
         assertEquals(200, child0.renderW);
         assertEquals(200, child1.renderW);
@@ -176,8 +160,7 @@ public class ContainerRenderPartTest
     @Test
     public void rendersChildrenHorizontal()
     {
-        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5,
-                (s) -> 8);
+        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5, (s) -> 8);
         MockRenderAdapter adapter = new MockRenderAdapter(ctx);
 
         MockRenderPart child0 = new MockRenderPart();
@@ -185,8 +168,7 @@ public class ContainerRenderPartTest
         MockRenderPart child1 = new MockRenderPart();
         child1.sizeToUse = new Size(20, 20);
 
-        ContainerRenderPart obj = new ContainerRenderPart(
-                Orientation.HORIZONTAL, Arrays.asList(child0, child1));
+        ContainerRenderPart obj = new ContainerRenderPart(Orientation.HORIZONTAL, Arrays.asList(child0, child1));
         obj.layout(ctx);
 
         obj.render(adapter, 0, 0, obj.getSize().width);
@@ -195,7 +177,7 @@ public class ContainerRenderPartTest
         assertTrue(child1.renderCalled);
 
         assertEquals(child0.renderX + 200, child1.renderX);
-        assertTrue(child0.renderY == child1.renderY);
+        assertEquals(child1.renderY, child0.renderY);
         assertEquals(200, child0.renderW);
         assertEquals(200, child1.renderW);
     }

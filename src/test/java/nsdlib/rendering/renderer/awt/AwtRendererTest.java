@@ -43,8 +43,7 @@ public class AwtRendererTest
     public void createsAdapterWithImageWithGivenDimensions()
     {
         AwtRenderer obj = new AwtRenderer();
-        RenderAdapter<BufferedImage> adapter = obj
-                .createAdapter(obj.createContext(), 20, 40);
+        RenderAdapter<BufferedImage> adapter = obj.createAdapter(obj.createContext(), 20, 40);
 
         BufferedImage img = adapter.finish();
 

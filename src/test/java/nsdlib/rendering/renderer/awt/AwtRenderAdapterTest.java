@@ -14,13 +14,10 @@ public class AwtRenderAdapterTest
     @Test
     public void drawsLines()
     {
-        RenderContext ctx = new RenderContext(10, 10, (s) -> s.length() * 8,
-                (s) -> 5);
-        BufferedImage img = new BufferedImage(10, 10,
-                BufferedImage.TYPE_INT_ARGB);
+        RenderContext ctx = new RenderContext(10, 10, (s) -> s.length() * 8, (s) -> 5);
+        BufferedImage img = new BufferedImage(10, 10, BufferedImage.TYPE_INT_ARGB);
 
         AwtRenderAdapter obj = new AwtRenderAdapter(ctx, img);
-
         obj.drawLine(3, 5, 6, 5);
 
         assertEquals(0x00000000, img.getRGB(2, 5));
@@ -36,13 +33,10 @@ public class AwtRenderAdapterTest
     @Test
     public void drawsRects()
     {
-        RenderContext ctx = new RenderContext(10, 10, (s) -> s.length() * 8,
-                (s) -> 5);
-        BufferedImage img = new BufferedImage(10, 10,
-                BufferedImage.TYPE_INT_ARGB);
+        RenderContext ctx = new RenderContext(10, 10, (s) -> s.length() * 8, (s) -> 5);
+        BufferedImage img = new BufferedImage(10, 10, BufferedImage.TYPE_INT_ARGB);
 
         AwtRenderAdapter obj = new AwtRenderAdapter(ctx, img);
-
         obj.drawRect(3, 5, 2, 2);
 
         // outside top left corner
@@ -67,13 +61,10 @@ public class AwtRenderAdapterTest
     @Test
     public void fillsRects()
     {
-        RenderContext ctx = new RenderContext(10, 10, (s) -> s.length() * 8,
-                (s) -> 5);
-        BufferedImage img = new BufferedImage(10, 10,
-                BufferedImage.TYPE_INT_ARGB);
+        RenderContext ctx = new RenderContext(10, 10, (s) -> s.length() * 8, (s) -> 5);
+        BufferedImage img = new BufferedImage(10, 10, BufferedImage.TYPE_INT_ARGB);
 
         AwtRenderAdapter obj = new AwtRenderAdapter(ctx, img);
-
         obj.fillRect(3, 5, 2, 2, new RenderColor(0xFF, 0x00, 0xFF));
 
         // outside top left corner
@@ -98,13 +89,10 @@ public class AwtRenderAdapterTest
     @Test
     public void ignoresNullFillColor()
     {
-        RenderContext ctx = new RenderContext(10, 10, (s) -> s.length() * 8,
-                (s) -> 5);
-        BufferedImage img = new BufferedImage(10, 10,
-                BufferedImage.TYPE_INT_ARGB);
+        RenderContext ctx = new RenderContext(10, 10, (s) -> s.length() * 8, (s) -> 5);
+        BufferedImage img = new BufferedImage(10, 10, BufferedImage.TYPE_INT_ARGB);
 
         AwtRenderAdapter obj = new AwtRenderAdapter(ctx, img);
-
         obj.fillRect(3, 5, 2, 2, null);
 
         // sample a few points
@@ -119,10 +107,8 @@ public class AwtRenderAdapterTest
     @Test
     public void returnsImage()
     {
-        RenderContext ctx = new RenderContext(10, 10, (s) -> s.length() * 8,
-                (s) -> 5);
-        BufferedImage img = new BufferedImage(10, 10,
-                BufferedImage.TYPE_INT_ARGB);
+        RenderContext ctx = new RenderContext(10, 10, (s) -> s.length() * 8, (s) -> 5);
+        BufferedImage img = new BufferedImage(10, 10, BufferedImage.TYPE_INT_ARGB);
 
         AwtRenderAdapter obj = new AwtRenderAdapter(ctx, img);
 

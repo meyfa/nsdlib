@@ -1,6 +1,7 @@
 package nsdlib.rendering.parts;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 import nsdlib.elements.NSDElement;
 import nsdlib.elements.NSDInstruction;
@@ -24,8 +25,7 @@ public class ParallelRenderPartTest
         MockRenderPart child1 = new MockRenderPart(source1);
 
         NSDElement sourceObj = new NSDInstruction("sourceObj");
-        ParallelRenderPart obj = new ParallelRenderPart(sourceObj,
-                Arrays.asList(child0, child1));
+        ParallelRenderPart obj = new ParallelRenderPart(sourceObj, Arrays.asList(child0, child1));
 
         assertSame(obj, obj.findForSource(sourceObj));
         assertSame(child0, obj.findForSource(source0));
@@ -36,15 +36,12 @@ public class ParallelRenderPartTest
     @Test
     public void callsLayoutForChildren()
     {
-        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5,
-                (s) -> 8);
+        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5, (s) -> 8);
 
         MockRenderPart child0 = new MockRenderPart();
         MockRenderPart child1 = new MockRenderPart();
 
-        ParallelRenderPart obj = new ParallelRenderPart(null,
-                Arrays.asList(child0, child1));
-
+        ParallelRenderPart obj = new ParallelRenderPart(null, Arrays.asList(child0, child1));
         obj.layout(ctx);
 
         assertTrue(child0.layoutCalled);
@@ -54,11 +51,9 @@ public class ParallelRenderPartTest
     @Test
     public void calculatesSizeWithoutChildren()
     {
-        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5,
-                (s) -> 8);
+        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5, (s) -> 8);
 
-        ParallelRenderPart obj = new ParallelRenderPart(null, Arrays.asList());
-
+        ParallelRenderPart obj = new ParallelRenderPart(null, Collections.emptyList());
         obj.layout(ctx);
 
         Size size = obj.getSize();
@@ -71,17 +66,14 @@ public class ParallelRenderPartTest
     @Test
     public void calculatesSizeWithChildren()
     {
-        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5,
-                (s) -> 8);
+        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5, (s) -> 8);
 
         MockRenderPart child0 = new MockRenderPart();
         child0.sizeToUse = new Size(200, 40);
         MockRenderPart child1 = new MockRenderPart();
         child1.sizeToUse = new Size(20, 20);
 
-        ParallelRenderPart obj = new ParallelRenderPart(null,
-                Arrays.asList(child0, child1));
-
+        ParallelRenderPart obj = new ParallelRenderPart(null, Arrays.asList(child0, child1));
         obj.layout(ctx);
 
         Size size = obj.getSize();
@@ -94,11 +86,10 @@ public class ParallelRenderPartTest
     @Test
     public void rendersBackground()
     {
-        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5,
-                (s) -> 8);
+        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5, (s) -> 8);
         MockRenderAdapter adapter = new MockRenderAdapter(ctx);
 
-        ParallelRenderPart obj = new ParallelRenderPart(null, Arrays.asList());
+        ParallelRenderPart obj = new ParallelRenderPart(null, Collections.emptyList());
         obj.setBackground(new RenderColor(0xFF, 0, 0));
         obj.layout(ctx);
 
@@ -110,8 +101,7 @@ public class ParallelRenderPartTest
     @Test
     public void rendersChildren()
     {
-        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5,
-                (s) -> 8);
+        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5, (s) -> 8);
         MockRenderAdapter adapter = new MockRenderAdapter(ctx);
 
         MockRenderPart child0 = new MockRenderPart();
@@ -119,8 +109,7 @@ public class ParallelRenderPartTest
         MockRenderPart child1 = new MockRenderPart();
         child1.sizeToUse = new Size(20, 20);
 
-        ParallelRenderPart obj = new ParallelRenderPart(null,
-                Arrays.asList(child0, child1));
+        ParallelRenderPart obj = new ParallelRenderPart(null, Arrays.asList(child0, child1));
         obj.layout(ctx);
 
         obj.render(adapter, 0, 0, obj.getSize().width);
@@ -129,7 +118,7 @@ public class ParallelRenderPartTest
         assertTrue(child1.renderCalled);
 
         assertEquals(child0.renderX + 200, child1.renderX);
-        assertTrue(child0.renderY == child1.renderY);
+        assertEquals(child1.renderY, child0.renderY);
         assertEquals(200, child0.renderW);
         assertEquals(200, child1.renderW);
     }

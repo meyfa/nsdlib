@@ -24,9 +24,8 @@ public class AlternativesRenderPartTest
         MockRenderPart child1 = new MockRenderPart(source1);
 
         NSDElement sourceObj = new NSDInstruction("sourceObj");
-        AlternativesRenderPart obj = new AlternativesRenderPart(sourceObj,
-                "condition", Arrays.asList("left", "right"),
-                Arrays.asList(child0, child1));
+        AlternativesRenderPart obj = new AlternativesRenderPart(sourceObj, "condition",
+                Arrays.asList("left", "right"), Arrays.asList(child0, child1));
 
         assertSame(obj, obj.findForSource(sourceObj));
         assertSame(child0, obj.findForSource(source0));
@@ -37,15 +36,13 @@ public class AlternativesRenderPartTest
     @Test
     public void callsLayoutForChildren()
     {
-        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5,
-                (s) -> 8);
+        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5, (s) -> 8);
 
         MockRenderPart child0 = new MockRenderPart();
         MockRenderPart child1 = new MockRenderPart();
 
-        AlternativesRenderPart obj = new AlternativesRenderPart(null,
-                "condition", Arrays.asList("left", "right"),
-                Arrays.asList(child0, child1));
+        AlternativesRenderPart obj = new AlternativesRenderPart(null, "condition",
+                Arrays.asList("left", "right"), Arrays.asList(child0, child1));
 
         obj.layout(ctx);
 
@@ -56,16 +53,14 @@ public class AlternativesRenderPartTest
     @Test
     public void calculatesSizeWithLargeHeading()
     {
-        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5,
-                (s) -> 8);
+        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5, (s) -> 8);
 
         MockRenderPart child0 = new MockRenderPart();
         child0.sizeToUse = new Size(0, 20);
         MockRenderPart child1 = new MockRenderPart();
         child1.sizeToUse = new Size(0, 20);
 
-        AlternativesRenderPart obj = new AlternativesRenderPart(null,
-                "this really long string has a length of 42",
+        AlternativesRenderPart obj = new AlternativesRenderPart(null, "this really long string has a length of 42",
                 Arrays.asList("L", "R"), Arrays.asList(child0, child1));
 
         obj.layout(ctx);
@@ -80,8 +75,7 @@ public class AlternativesRenderPartTest
     @Test
     public void calculatesSizeWithLargeChildren()
     {
-        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5,
-                (s) -> 8);
+        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5, (s) -> 8);
 
         MockRenderPart child0 = new MockRenderPart();
         child0.sizeToUse = new Size(300, 20);
@@ -103,16 +97,14 @@ public class AlternativesRenderPartTest
     @Test
     public void rendersBackground()
     {
-        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5,
-                (s) -> 8);
+        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5, (s) -> 8);
         MockRenderAdapter adapter = new MockRenderAdapter(ctx);
 
         MockRenderPart child0 = new MockRenderPart();
         MockRenderPart child1 = new MockRenderPart();
 
-        AlternativesRenderPart obj = new AlternativesRenderPart(null,
-                "condition", Arrays.asList("left", "right"),
-                Arrays.asList(child0, child1));
+        AlternativesRenderPart obj = new AlternativesRenderPart(null, "condition",
+                Arrays.asList("left", "right"), Arrays.asList(child0, child1));
         obj.setBackground(new RenderColor(0xFF, 0, 0));
         obj.layout(ctx);
 
@@ -124,8 +116,7 @@ public class AlternativesRenderPartTest
     @Test
     public void rendersChildren()
     {
-        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5,
-                (s) -> 8);
+        RenderContext ctx = new RenderContext(8, 10, (s) -> s.length() * 5, (s) -> 8);
         MockRenderAdapter adapter = new MockRenderAdapter(ctx);
 
         MockRenderPart child0 = new MockRenderPart();
@@ -133,9 +124,8 @@ public class AlternativesRenderPartTest
         MockRenderPart child1 = new MockRenderPart();
         child1.sizeToUse = new Size(20, 20);
 
-        AlternativesRenderPart obj = new AlternativesRenderPart(null,
-                "condition", Arrays.asList("left", "right"),
-                Arrays.asList(child0, child1));
+        AlternativesRenderPart obj = new AlternativesRenderPart(null, "condition",
+                Arrays.asList("left", "right"), Arrays.asList(child0, child1));
         obj.layout(ctx);
 
         obj.render(adapter, 0, 0, obj.getSize().width);
@@ -144,7 +134,7 @@ public class AlternativesRenderPartTest
         assertTrue(child1.renderCalled);
 
         assertEquals(child0.renderX + 200, child1.renderX);
-        assertTrue(child0.renderY == child1.renderY);
+        assertEquals(child1.renderY, child0.renderY);
         assertEquals(200, child0.renderW);
         assertEquals(200, child1.renderW);
     }

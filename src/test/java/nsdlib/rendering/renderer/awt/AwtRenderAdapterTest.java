@@ -17,7 +17,7 @@ public class AwtRenderAdapterTest
         RenderContext ctx = new RenderContext(10, 10, (s) -> s.length() * 8, (s) -> 5);
         BufferedImage img = new BufferedImage(10, 10, BufferedImage.TYPE_INT_ARGB);
 
-        AwtRenderAdapter obj = new AwtRenderAdapter(ctx, img);
+        AwtRenderAdapter obj = new AwtRenderAdapter(ctx, img, 1);
         obj.drawLine(3, 5, 6, 5);
 
         assertEquals(0x00000000, img.getRGB(2, 5));
@@ -36,7 +36,7 @@ public class AwtRenderAdapterTest
         RenderContext ctx = new RenderContext(10, 10, (s) -> s.length() * 8, (s) -> 5);
         BufferedImage img = new BufferedImage(10, 10, BufferedImage.TYPE_INT_ARGB);
 
-        AwtRenderAdapter obj = new AwtRenderAdapter(ctx, img);
+        AwtRenderAdapter obj = new AwtRenderAdapter(ctx, img, 1);
         obj.drawRect(3, 5, 2, 2);
 
         // outside top left corner
@@ -64,7 +64,7 @@ public class AwtRenderAdapterTest
         RenderContext ctx = new RenderContext(10, 10, (s) -> s.length() * 8, (s) -> 5);
         BufferedImage img = new BufferedImage(10, 10, BufferedImage.TYPE_INT_ARGB);
 
-        AwtRenderAdapter obj = new AwtRenderAdapter(ctx, img);
+        AwtRenderAdapter obj = new AwtRenderAdapter(ctx, img, 1);
         obj.fillRect(3, 5, 2, 2, new RenderColor(0xFF, 0x00, 0xFF));
 
         // outside top left corner
@@ -92,7 +92,7 @@ public class AwtRenderAdapterTest
         RenderContext ctx = new RenderContext(10, 10, (s) -> s.length() * 8, (s) -> 5);
         BufferedImage img = new BufferedImage(10, 10, BufferedImage.TYPE_INT_ARGB);
 
-        AwtRenderAdapter obj = new AwtRenderAdapter(ctx, img);
+        AwtRenderAdapter obj = new AwtRenderAdapter(ctx, img, 1);
         obj.fillRect(3, 5, 2, 2, null);
 
         // sample a few points
@@ -110,7 +110,7 @@ public class AwtRenderAdapterTest
         RenderContext ctx = new RenderContext(10, 10, (s) -> s.length() * 8, (s) -> 5);
         BufferedImage img = new BufferedImage(10, 10, BufferedImage.TYPE_INT_ARGB);
 
-        AwtRenderAdapter obj = new AwtRenderAdapter(ctx, img);
+        AwtRenderAdapter obj = new AwtRenderAdapter(ctx, img, 1);
 
         assertSame(img, obj.finish());
     }

@@ -19,10 +19,10 @@ import nsdlib.rendering.renderer.RenderContext;
 public class AwtRenderer extends NSDRenderer<BufferedImage>
 {
     static final Font font = new Font(Font.SANS_SERIF, Font.PLAIN, 12);
-    static final FontMetrics fontMetrics = new Canvas().getFontMetrics(font);
+    private static final FontMetrics fontMetrics = new Canvas().getFontMetrics(font);
 
     private static final RenderContext ctx = new RenderContext(10, 10,
-            fontMetrics::stringWidth, s -> fontMetrics.getHeight());
+            fontMetrics::stringWidth, s -> fontMetrics.getAscent());
 
     @Override
     public RenderContext createContext()
@@ -31,9 +31,9 @@ public class AwtRenderer extends NSDRenderer<BufferedImage>
     }
 
     @Override
-    public RenderAdapter<BufferedImage> createAdapter(RenderContext context, int width, int height)
+    public RenderAdapter<BufferedImage> createAdapter(RenderContext context, int width, int height, double scale)
     {
         BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-        return new AwtRenderAdapter(context, img);
+        return new AwtRenderAdapter(context, img, scale);
     }
 }

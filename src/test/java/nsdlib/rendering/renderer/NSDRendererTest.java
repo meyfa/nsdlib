@@ -23,7 +23,7 @@ public class NSDRendererTest
         }
 
         @Override
-        public RenderAdapter<Object> createAdapter(RenderContext context, int width, int height)
+        public RenderAdapter<Object> createAdapter(RenderContext context, int width, int height, double scale)
         {
             return new RenderAdapter<Object>(context) {
                 @Override
@@ -114,7 +114,7 @@ public class NSDRendererTest
         RenderPartMock part = new RenderPartMock();
         part.sizeToUse = new Size(40, 16);
 
-        obj.render(part);
+        obj.render(part, 1);
 
         assertTrue(part.layoutCalled);
     }
@@ -128,7 +128,7 @@ public class NSDRendererTest
         RenderPartMock part = new RenderPartMock();
         part.sizeToUse = new Size(40, 16);
 
-        obj.render(part);
+        obj.render(part, 1);
 
         assertTrue(part.renderCalled);
         assertNotNull(part.renderAdapter);
@@ -147,7 +147,7 @@ public class NSDRendererTest
         RenderPartMock part = new RenderPartMock();
         part.sizeToUse = new Size(40, 16);
 
-        assertSame(obj.resultToUse, obj.render(part));
+        assertSame(obj.resultToUse, obj.render(part, 1));
     }
 
     @Test
@@ -162,7 +162,7 @@ public class NSDRendererTest
         NSDElementMock element = new NSDElementMock();
         element.renderPartToUse = part;
 
-        obj.render(element);
+        obj.render(element, 1);
 
         assertTrue(part.renderCalled);
     }

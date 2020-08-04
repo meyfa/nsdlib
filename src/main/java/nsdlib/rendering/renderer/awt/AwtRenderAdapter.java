@@ -24,13 +24,16 @@ public class AwtRenderAdapter extends RenderAdapter<BufferedImage>
     /**
      * @param ctx The context this adapter is using.
      * @param img The image this adapter shall draw to.
+     * @param scale The scaling factor for everything that is drawn.
      */
-    public AwtRenderAdapter(RenderContext ctx, BufferedImage img)
+    public AwtRenderAdapter(RenderContext ctx, BufferedImage img, double scale)
     {
         super(ctx);
 
         this.img = img;
         this.g = img.createGraphics();
+
+        g.scale(scale, scale);
 
         g.setFont(AwtRenderer.font);
         g.setColor(Color.BLACK);

@@ -23,35 +23,45 @@ import nsdlib.rendering.parts.RenderPart;
 public abstract class NSDRenderer<T>
 {
     /**
-     * Renders the given NS diagram element using this renderer and returns the
-     * result. The diagram is rendered in its intrinsic size.
+     * Renders the given NS diagram element using this renderer and returns the result.
+     * This is the same as calling {@link NSDElement#toRenderPart()} followed by
+     * {@link #render(RenderPart, double)}.
      *
      * @param nsd The element to render.
+     * @param scale The scaling factor to apply.
      * @return The render result.
      */
-    public T render(NSDElement nsd)
+    public T render(NSDElement nsd, double scale)
     {
-        return render(nsd.toRenderPart());
+        return render(nsd.toRenderPart(), scale);
     }
 
     /**
-     * Renders the given {@link RenderPart} using this renderer and returns the
-     * result. The part is rendered in its intrinsic size.
+     * Renders the given {@link RenderPart} using this renderer and returns the result.
+     *
+     * <p>
+     * The diagram is rendered in its intrinsic size scaled by the given factor.
+     * For example, if the diagram in its layout-ed form is 200x300 and scale factor is 2,
+     * the resulting image will be 400x600.
      *
      * <p>
      * This can be used if an element's render part has been precomputed.
      *
      * @param part The part to render.
+     * @param scale The scaling factor to apply.
      * @return The render result.
      */
-    public T render(RenderPart part)
+    public T render(RenderPart part, double scale)
     {
         RenderContext ctx = createContext();
 
         part.layout(ctx);
         Size size = part.getSize();
 
-        RenderAdapter<T> adapter = createAdapter(ctx, size.width + 1, size.height + 1);
+        int width = (int) Math.ceil((size.width + 1) * scale);
+        int height = (int) Math.ceil((size.height + 1) * scale);
+
+        RenderAdapter<T> adapter = createAdapter(ctx, width, height, scale);
         part.render(adapter, 0, 0, size.width);
 
         return adapter.finish();
@@ -73,10 +83,17 @@ public abstract class NSDRenderer<T>
      * Creates a {@link RenderAdapter} that acts as the connecting piece between
      * rather abstract drawing instructions and generating the final result.
      *
+     * <p>
+     * The width and height of the result will be exactly as provided, while
+     * everything that is drawn will be scaled by the given factor. It is the
+     * caller's responsibility to ensure width/height and scale are matched to
+     * part dimensions.
+     *
      * @param context The render context used during the layout phase.
      * @param width The width of the result.
      * @param height The height of the result.
+     * @param scale The scaling to apply to any drawing operation.
      * @return A render context appropriate for this type of renderer.
      */
-    public abstract RenderAdapter<T> createAdapter(RenderContext context, int width, int height);
+    public abstract RenderAdapter<T> createAdapter(RenderContext context, int width, int height, double scale);
 }
